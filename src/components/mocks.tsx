@@ -142,7 +142,7 @@ export function IvrScreen({ segment, variant = "after", w = 240, label }: { segm
 /* Hero: los tres segmentos con el diseño final */
 export function SegmentsMock() {
   return (
-    <Grid templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }} gap="8" alignItems="start">
+    <Grid templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(3, minmax(0, 1fr))" }} gap={{ base: 10, md: 4, lg: 8 }} alignItems="start">
       <IvrScreen segment="prepago" label="Prepago" />
       <IvrScreen segment="hogar" label="Hogar" />
       <IvrScreen segment="plan" label="Plan móvil" />

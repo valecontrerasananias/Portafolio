@@ -163,7 +163,7 @@ export default function CaseStudy() {
               Rediseñé la experiencia de autogestión del IVR para que los clientes resuelvan sus dudas sin llamar al call center.
             </Text>
 
-            <Grid as="dl" mt="14" templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }} gap="8" borderTopWidth="1px" borderColor="app.border" pt="8">
+            <Grid as="dl" mt="14" templateColumns={{ base: "repeat(2, minmax(0, 1fr))", md: "repeat(4, minmax(0, 1fr))" }} gap="8" borderTopWidth="1px" borderColor="app.border" pt="8">
               {meta.map((m) => (
                 <Box key={m.label}>
                   <Text as="dt" textStyle="footnoteMedium" color="app.subtle">
@@ -208,7 +208,7 @@ export default function CaseStudy() {
             En agosto hubo cerca de 35.000 intercepciones de IVR. La mayoría no usaba lo que se le ofrecía. Antes de rediseñar nada,
             quería saber por qué.
           </Body>
-          <Grid mt="12" templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap={{ base: 10, md: 16 }} alignItems="center">
+          <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap={{ base: 10, md: 16 }} alignItems="center">
             <AbandonMock />
             <Stat value="55%">de los clientes abandonaba el flujo sin interactuar con ninguna pantalla del IVR</Stat>
           </Grid>
@@ -220,7 +220,7 @@ export default function CaseStudy() {
           <Body mt="6">
             Revisé todo el recorrido, desde la activación de permisos hasta las pantallas por segmento, y planteé dos hipótesis.
           </Body>
-          <Grid mt="12" templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} columnGap="12" rowGap="10">
+          <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} columnGap="12" rowGap="10">
             {hypotheses.map((h, i) => (
               <Box key={h.title} borderTopWidth="1px" borderColor="app.border" pt="5">
                 <Text textStyle="footnoteMedium" color="app.subtle">
@@ -243,7 +243,7 @@ export default function CaseStudy() {
               procesarlos más rápido, agrupar accesos similares y detectar opciones con poca interacción. El criterio para decidir fue
               mío.
             </Body>
-            <Grid mt="8" templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }} gap="8">
+            <Grid mt="8" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(3, minmax(0, 1fr))" }} gap="8">
               {segments.map((s) => {
                 const Icon = s.icon;
                 return (
@@ -264,7 +264,7 @@ export default function CaseStudy() {
             </Text>
           </Box>
 
-          <Grid mt="20" templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap={{ base: 6, md: 12 }} borderYWidth="1px" borderColor="app.border" py="10">
+          <Grid mt="20" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap={{ base: 6, md: 12 }} borderYWidth="1px" borderColor="app.border" py="10">
             <Box>
               <H3>Pista 2: lo que se pedía no coincidía con por qué llamaban</H3>
               <Body small mt="3">
@@ -287,9 +287,9 @@ export default function CaseStudy() {
             de móvil, prepago y hogar. Menos opciones, menos tiempo de decisión (ley de Hick). Visualmente era limpia y tenía lógica.
           </Body>
 
-          <Grid mt="14" templateColumns={{ base: "1fr", md: "repeat(5, 1fr)" }} gap="10" alignItems="start">
+          <Grid mt="14" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(5, minmax(0, 1fr))" }} gap="10" alignItems="start">
             <GridItem colSpan={{ base: 1, md: 3 }}>
-              <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap="10">
+              <Grid templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="10">
                 <ProsCons heading="Lo que ganaba" positive items={[["Menos opciones", "Decisión más rápida."], ["Una sola vista", "Simple de construir y mantener."]]} />
                 <ProsCons heading="Lo que costaba" items={[["Accesos ajenos", "Un cliente mono servicio vería opciones que no le corresponden."], ["Contexto ignorado", "Desarrollo confirmó que el servicio ya era identificable."]]} />
               </Grid>
@@ -308,7 +308,7 @@ export default function CaseStudy() {
         {/* Pantallas por segmento */}
         <Section label="Solución: pantallas por segmento">
           <H2>Cada servicio, sus propias prioridades</H2>
-          <Grid mt="12" templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap="12" alignItems="start">
+          <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="12" alignItems="start">
             <Box>
               <H3>Reglas de diseño en los tres segmentos</H3>
               <List.Root as="ol" listStyle="none" m="0" mt="6" gap="6">
@@ -350,11 +350,11 @@ export default function CaseStudy() {
 
           <Box mt="16">
             <Surface>
-              <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap="10">
+              <Grid templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="10">
                 <IvrScreen segment="plan" variant="before" label="Antes · Plan móvil" />
                 <IvrScreen segment="plan" variant="after" label="Después · Plan móvil" />
               </Grid>
-              <Grid mt="12" templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap="10">
+              <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="10">
                 <IvrScreen segment="hogar" variant="after" w={190} label="Hogar" />
                 <IvrScreen segment="prepago" variant="after" w={190} label="Prepago" />
               </Grid>
@@ -393,7 +393,7 @@ export default function CaseStudy() {
                 ))}
               </Box>
             </Surface>
-            <List.Root as="ol" listStyle="none" m="0" mt="10" display="grid" gridTemplateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} columnGap="10" rowGap="6">
+            <List.Root as="ol" listStyle="none" m="0" mt="10" display="grid" gridTemplateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))", lg: "repeat(3, minmax(0, 1fr))" }} columnGap="10" rowGap="6">
               {annotations.map((a) => (
                 <List.Item key={a.n} display="flex" gap="3">
                   <Flex boxSize="22px" flexShrink={0} rounded="full" borderWidth="1px" borderColor="app.borderStrong" align="center" justify="center" textStyle="smallMedium" fontSize="10px">
@@ -463,7 +463,7 @@ export default function CaseStudy() {
 
         {/* Resultados */}
         <Section label="Resultados">
-          <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap="12">
+          <Grid templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="12">
             <Box>
               <Text textStyle="h1" color="app.accent">
                 55% → ?
@@ -491,7 +491,7 @@ export default function CaseStudy() {
 
         {/* Aprendizajes */}
         <Section id="aprendizajes" label="Aprendizajes y límites">
-          <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} columnGap="12" rowGap="10">
+          <Grid templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} columnGap="12" rowGap="10">
             {lessons.map((l, i) => (
               <Flex key={l.title} gap="4">
                 <Text textStyle="footnoteMedium" color="app.subtle">
@@ -519,7 +519,7 @@ export default function CaseStudy() {
               role="group"
               mt="6"
               display="grid"
-              gridTemplateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
+              gridTemplateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }}
               overflow="hidden"
               rounded="container"
               borderWidth="1px"
