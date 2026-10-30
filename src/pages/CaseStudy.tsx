@@ -150,11 +150,10 @@ const decisions = [
   ],
 ];
 
-const metrics = [
-  ["Abandono (55%)", "debería bajar si la pantalla comunica mejor."],
-  ["Interacción con accesos (12%)", "debería subir si la jerarquía por segmento es acertada."],
-  ["Uso del acceso de reclamos", "muestra si cubrí el vacío que dejaban las llamadas."],
-  ["Activación de permisos", "compara el flujo nuevo con el anterior, por marca."],
+const improvements = [
+  ["Autogestión", "Accesos reorganizados según las prioridades de cada segmento."],
+  ["Activación", "Instrucciones y flujos de permisos adaptados a distintos dispositivos."],
+  ["Comunicación", "Una landing informativa para clientes que todavía no han activado la funcionalidad."],
 ];
 
 const lessons = [
@@ -479,35 +478,24 @@ export default function CaseStudy() {
 
         {/* Resultados */}
         <Section label="Resultados">
-          <H2>Diseño aprobado, en desarrollo y con una hipótesis por comprobar</H2>
-          <Body mt="6">El diseño fue aprobado por stakeholders y está en desarrollo en Android. Aún no hay métricas posteriores al lanzamiento.</Body>
+          <Body>El rediseño fue aprobado por stakeholders y se encuentra en desarrollo para Android.</Body>
+          <Body mt="4">La propuesta abarca tres mejoras:</Body>
 
-          <Box mt="16">
-            <H3>Cómo sabré si funcionó</H3>
-            <List.Root listStyle="none" m="0" mt="6" gap="4" maxW="2xl">
-              {metrics.map(([t, b]) => (
-                <List.Item key={t} display="flex" gap="3">
-                  <Box mt="1" flexShrink={0} color="app.fg">
-                    <Check size={16} strokeWidth={2} aria-hidden />
-                  </Box>
-                  <Text textStyle="body" color="app.muted">
-                    <Text as="span" fontWeight="600" color="app.fg">
-                      {t}:
-                    </Text>{" "}
-                    {b}
-                  </Text>
-                </List.Item>
-              ))}
-            </List.Root>
-          </Box>
+          <Grid mt="8" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(3, minmax(0, 1fr))" }} gap="6">
+            {improvements.map(([t, b]) => (
+              <Card key={t}>
+                <H3 size="bodyLgMedium">{t}</H3>
+                <Body small mt="2">
+                  {b}
+                </Body>
+              </Card>
+            ))}
+          </Grid>
 
-          <Box mt="16" borderTopWidth="1px" borderColor="app.border" pt="8">
-            <H3>Limitaciones</H3>
-            <Body small mt="3">
-              Validé con stakeholders y con datos de uso, lo que respalda la priorización pero no la comprensión de los textos ni de los
-              flujos de permisos por clientes. Tras el lanzamiento lo evaluaría con pruebas breves en Samsung y Huawei/Xiaomi.
-            </Body>
-          </Box>
+          <Body mt="8">
+            Aunque las soluciones responden a oportunidades identificadas durante el análisis, estoy a la espera de métricas posteriores
+            al lanzamiento que permitan comprobar su impacto.
+          </Body>
         </Section>
 
         {/* Lo que aprendí */}
@@ -527,16 +515,6 @@ export default function CaseStudy() {
               </Flex>
             ))}
           </Grid>
-        </Section>
-
-        {/* Qué sigue */}
-        <Section id="siguiente" label="Qué sigue">
-          <Box rounded="container" bg="app.accentSoft" p={{ base: 8, md: 10 }}>
-            <Text maxW="2xl" textStyle="headlineMedium" color="app.fg">
-              Incorporar un motion graphic en el flujo de permisos que muestre los pasos, para complementar las instrucciones escritas,
-              sobre todo en dispositivos con configuración adicional.
-            </Text>
-          </Box>
         </Section>
       </Flex>
 
