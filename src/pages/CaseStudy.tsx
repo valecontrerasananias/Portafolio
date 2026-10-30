@@ -60,11 +60,11 @@ const Stat = ({ value, children }: { value: string; children: ReactNode }) => (
   </Flex>
 );
 
-/* Dato destacado: tarjeta con borde continuo; la cifra y su frase en #17D5FF, el resto en gris */
+/* Dato destacado: tarjeta con borde continuo; la cifra y su frase en negrita negra (contraste), el resto en gris */
 const StatCard = ({ highlight, children }: { highlight: string; children: ReactNode }) => (
   <Box rounded="container" borderWidth="1px" borderStyle="solid" borderColor="app.borderStrong" p={{ base: 6, md: 8 }}>
     <Text textStyle="headline" color="app.muted">
-      <Text as="span" fontWeight="600" color="app.button">
+      <Text as="span" fontWeight="700" color="app.fg">
         {highlight}
       </Text>{" "}
       {children}
@@ -271,7 +271,7 @@ export default function CaseStudy() {
             </Text>
           </Box>
 
-          <Grid mt="20" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap={{ base: 6, md: 12 }} borderYWidth="1px" borderColor="app.border" py="10">
+          <Grid mt="20" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap={{ base: 6, md: 12 }} borderTopWidth="1px" borderColor="app.border" pt="10" pb="2">
             <Box>
               <H3>Pista 2: lo que se pedía no coincidía con por qué llamaban</H3>
               <Body small mt="3">
