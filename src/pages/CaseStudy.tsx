@@ -85,6 +85,13 @@ const Callout = ({ children }: { children: ReactNode }) => (
   </Box>
 );
 
+/* Card de contenido: fondo gris claro y esquinas amplias, sin bordes ni divisores */
+const Card = ({ children }: { children: ReactNode }) => (
+  <Box bg="app.card" rounded={{ base: "24px", md: "32px" }} p={{ base: 6, md: 8 }}>
+    {children}
+  </Box>
+);
+
 const Surface = ({ children }: { children: ReactNode }) => (
   <Box rounded="container" bg="app.surface" p={{ base: 6, md: 12 }}>
     {children}
@@ -230,9 +237,9 @@ export default function CaseStudy() {
           <Body mt="6">
             Revisé todo el recorrido, desde la activación de permisos hasta las pantallas por segmento, y planteé dos hipótesis.
           </Body>
-          <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} columnGap="12" rowGap="10">
+          <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="6">
             {hypotheses.map((h, i) => (
-              <Box key={h.title} borderTopWidth="1px" borderColor="app.border" pt="5">
+              <Card key={h.title}>
                 <Text textStyle="footnoteMedium" color="app.subtle">
                   Hipótesis {i + 1}
                 </Text>
@@ -242,7 +249,7 @@ export default function CaseStudy() {
                 <Body small mt="3">
                   {h.body}
                 </Body>
-              </Box>
+              </Card>
             ))}
           </Grid>
 
@@ -253,11 +260,11 @@ export default function CaseStudy() {
               procesarlos más rápido, agrupar accesos similares y detectar opciones con poca interacción. El criterio para decidir fue
               mío.
             </Body>
-            <Grid mt="8" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(3, minmax(0, 1fr))" }} gap="8">
+            <Grid mt="8" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(3, minmax(0, 1fr))" }} gap="6">
               {segments.map((s) => {
                 const Icon = s.icon;
                 return (
-                  <Box key={s.title}>
+                  <Card key={s.title}>
                     <Icon size={20} strokeWidth={1.5} aria-hidden />
                     <H3 size="bodyLgMedium" mt="4">
                       {s.title}
@@ -265,7 +272,7 @@ export default function CaseStudy() {
                     <Body small mt="2">
                       {s.body}
                     </Body>
-                  </Box>
+                  </Card>
                 );
               })}
             </Grid>

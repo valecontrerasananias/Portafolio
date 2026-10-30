@@ -53,6 +53,7 @@ const config = defineConfig({
         "app.border": { value: "#0000001a" }, // Container/divider
         "app.borderStrong": { value: "#00000033" },
         "app.surface": { value: "#f5f5f5" },
+        "app.card": { value: "#f1f1f3" }, // fondo de cards
         "app.accent": { value: "#148ea9" }, // Button hover (texto/cifras con contraste)
         "app.accentSoft": { value: "#17d5ff1f" }, // Button al 12%
         "app.positive": { value: "#2f7d1f" }, // puntos a favor
