@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
-import { Box, Flex, Grid, GridItem, Heading, Link, List, Separator, Text } from "@chakra-ui/react";
-import { ArrowRight, Check, Home, Minus, Smartphone, Wifi } from "lucide-react";
+import { Box, Flex, Grid, GridItem, Heading, List, Separator, Text } from "@chakra-ui/react";
+import { Check, Home, Minus, Smartphone, Wifi } from "lucide-react";
 import Nav from "../components/Nav";
 import Reveal from "../components/Reveal";
-import { AbandonMock, IvrScreen, PermissionsMock, PhoneFrame, PushLandingMock, SegmentsMock, TransversalMock } from "../components/mocks";
+import { AbandonMock, IvrScreen, PermissionsMock, PushLandingMock, SegmentsMock, TransversalMock } from "../components/mocks";
 
 /* ---------- primitivas de layout ---------- */
 
@@ -117,28 +117,20 @@ const annotations = [
 ];
 
 const metrics = [
-  ["Abandono (55%)", "Debería bajar si la pantalla comunica mejor."],
-  ["Interacción con accesos (12%)", "Debería subir si la jerarquía por segmento es acertada."],
-  ["Uso del acceso de reclamos", "Muestra si cubrí el vacío que dejaban las llamadas."],
-  ["Activación de permisos", "Compara el flujo nuevo con el anterior, por marca."],
+  ["Abandono (55%)", "debería bajar si la pantalla comunica mejor."],
+  ["Interacción con accesos (12%)", "debería subir si la jerarquía por segmento es acertada."],
+  ["Uso del acceso de reclamos", "muestra si cubrí el vacío que dejaban las llamadas."],
+  ["Activación de permisos", "compara el flujo nuevo con el anterior, por marca."],
 ];
 
 const lessons = [
   {
-    title: "La IA acelera el análisis, pero no decide",
+    title: "La IA acelera el análisis, pero no decide.",
     body: "La pantalla transversal fue la mejor prueba: me dio una buena propuesta y la descarté con contexto que ella no tenía.",
   },
   {
-    title: "Hablar con desarrollo y con la PO cambia el diseño",
+    title: "Hablar con desarrollo y con la PO cambia el diseño.",
     body: "El dato de que el servicio ya era identificable cambió la decisión central.",
-  },
-  {
-    title: "Una misma necesidad, distintas interacciones",
-    body: "La experiencia debe adaptarse a lo que cada dispositivo permite, no al revés.",
-  },
-  {
-    title: "Validar es más que tener datos",
-    body: "Los datos de uso respaldan la priorización, pero no la comprensión de textos ni de flujos. Eso se prueba con clientes.",
   },
 ];
 
@@ -463,34 +455,39 @@ export default function CaseStudy() {
 
         {/* Resultados */}
         <Section label="Resultados">
-          <Grid templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="12">
-            <Box>
-              <Text textStyle="h1" color="app.accent">
-                55% → ?
-              </Text>
-              <Body small mt="4">
-                Diseño aprobado por stakeholders y en desarrollo en Android. Aún no hay métricas posteriores al lanzamiento: es una
-                hipótesis por comprobar.
-              </Body>
-            </Box>
-            <Box>
-              <H3 size="headlineMedium">Cómo sabré si funcionó</H3>
-              <List.Root listStyle="none" m="0" mt="5" gap="4">
-                {metrics.map(([t, b]) => (
-                  <List.Item key={t} textStyle="body" color="app.muted">
-                    <Text as="span" fontWeight="semibold" color="app.fg">
-                      {t}.
+          <H2>Diseño aprobado, en desarrollo y con una hipótesis por comprobar</H2>
+          <Body mt="6">El diseño fue aprobado por stakeholders y está en desarrollo en Android. Aún no hay métricas posteriores al lanzamiento.</Body>
+
+          <Box mt="16">
+            <H3>Cómo sabré si funcionó</H3>
+            <List.Root listStyle="none" m="0" mt="6" gap="4" maxW="2xl">
+              {metrics.map(([t, b]) => (
+                <List.Item key={t} display="flex" gap="3">
+                  <Box mt="1" flexShrink={0} color="app.fg">
+                    <Check size={16} strokeWidth={2} aria-hidden />
+                  </Box>
+                  <Text textStyle="body" color="app.muted">
+                    <Text as="span" fontWeight="600" color="app.fg">
+                      {t}:
                     </Text>{" "}
                     {b}
-                  </List.Item>
-                ))}
-              </List.Root>
-            </Box>
-          </Grid>
+                  </Text>
+                </List.Item>
+              ))}
+            </List.Root>
+          </Box>
+
+          <Box mt="16" borderTopWidth="1px" borderColor="app.border" pt="8">
+            <H3>Limitaciones</H3>
+            <Body small mt="3">
+              Validé con stakeholders y con datos de uso, lo que respalda la priorización pero no la comprensión de los textos ni de los
+              flujos de permisos por clientes. Tras el lanzamiento lo evaluaría con pruebas breves en Samsung y Huawei/Xiaomi.
+            </Body>
+          </Box>
         </Section>
 
-        {/* Aprendizajes */}
-        <Section id="aprendizajes" label="Aprendizajes y límites">
+        {/* Lo que aprendí */}
+        <Section id="aprendizajes" label="Lo que aprendí">
           <Grid templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} columnGap="12" rowGap="10">
             {lessons.map((l, i) => (
               <Flex key={l.title} gap="4">
@@ -509,56 +506,14 @@ export default function CaseStudy() {
         </Section>
 
         {/* Qué sigue */}
-        <Container id="siguiente">
-          <Reveal>
-            <Text textStyle="footnoteMedium" color="app.subtle">
-              Qué sigue
+        <Section id="siguiente" label="Qué sigue">
+          <Box rounded="container" bg="app.accentSoft" p={{ base: 8, md: 10 }}>
+            <Text maxW="2xl" textStyle="headlineMedium" color="app.fg">
+              Incorporar un motion graphic en el flujo de permisos que muestre los pasos, para complementar las instrucciones escritas,
+              sobre todo en dispositivos con configuración adicional.
             </Text>
-            <Link
-              href="#top"
-              role="group"
-              mt="6"
-              display="grid"
-              gridTemplateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }}
-              overflow="hidden"
-              rounded="container"
-              borderWidth="1px"
-              borderColor="app.border"
-              transition="border-color 0.2s"
-              _hover={{ borderColor: "app.borderStrong", textDecoration: "none" }}
-            >
-              <Flex direction="column" justify="space-between" gap="10" p={{ base: 8, md: 12 }}>
-                <Box>
-                  <Text textStyle="footnote" color="app.subtle">
-                    Próximo paso de diseño
-                  </Text>
-                  <Heading as="h2" mt="3" textStyle={{ base: "mh3", md: "h4" }} lineHeight="1.15">
-                    Un motion graphic para el flujo de permisos
-                  </Heading>
-                  <Text mt="4" maxW="md" textStyle="body" color="app.muted">
-                    Mostrar los pasos en movimiento para complementar las instrucciones escritas, sobre todo en dispositivos con
-                    configuración adicional. Después del lanzamiento, probarlo en Samsung y Huawei/Xiaomi.
-                  </Text>
-                </Box>
-                <Flex align="center" gap="2" textStyle="footnoteMedium">
-                  Volver al inicio
-                  <Box transition="transform 0.2s" _groupHover={{ transform: "translateX(4px)" }}>
-                    <ArrowRight size={16} />
-                  </Box>
-                </Flex>
-              </Flex>
-              <Box minH="72" bg="app.surface" borderTopWidth={{ base: "1px", md: 0 }} borderLeftWidth={{ md: "1px" }} borderColor="app.border" p="8">
-                <PhoneFrame w={170}>
-                  <Flex flex="1" align="center" justify="center" fontSize="11px" color="app.subtle" textAlign="center">
-                    Motion graphic
-                    <br />
-                    de permisos
-                  </Flex>
-                </PhoneFrame>
-              </Box>
-            </Link>
-          </Reveal>
-        </Container>
+          </Box>
+        </Section>
       </Flex>
 
       <Separator borderColor="app.border" />
