@@ -186,6 +186,23 @@ export default function CaseStudy() {
               Rediseñé la experiencia de autogestión del IVR para que los clientes resuelvan sus dudas sin llamar al call center.
             </Text>
 
+            <Flex direction="column" gap="4" mt="8" maxW="2xl">
+              {[
+                ["El problema", "de 35.000 intercepciones al mes, el 55% abandonaba sin interactuar con pantallas de IVR."],
+                [
+                  "Lo que entregué",
+                  "accesos reorganizados por segmento, activación de permisos adaptada a cada dispositivo y una landing para quienes no habían activado la función.",
+                ],
+              ].map(([t, b]) => (
+                <Text key={t} textStyle="body" color="app.muted">
+                  <Text as="span" fontWeight="700" color="app.fg">
+                    {t}:
+                  </Text>{" "}
+                  {b}
+                </Text>
+              ))}
+            </Flex>
+
             <Grid as="dl" mt="14" templateColumns={{ base: "repeat(2, minmax(0, 1fr))", md: "repeat(4, minmax(0, 1fr))" }} gap="8" borderTopWidth="1px" borderColor="app.border" pt="8">
               {meta.map((m) => (
                 <Box key={m.label}>
