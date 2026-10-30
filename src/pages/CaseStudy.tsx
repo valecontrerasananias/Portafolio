@@ -297,22 +297,42 @@ export default function CaseStudy() {
             de móvil, prepago y hogar. Menos opciones, menos tiempo de decisión (ley de Hick). Visualmente era limpia y tenía lógica.
           </Body>
 
-          <Grid mt="14" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(5, minmax(0, 1fr))" }} gap="10" alignItems="start">
-            <GridItem colSpan={{ base: 1, md: 3 }}>
-              <Grid templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="10">
-                <ProsCons heading="Lo que ganaba" positive items={[["Menos opciones", "Decisión más rápida."], ["Una sola vista", "Simple de construir y mantener."]]} />
-                <ProsCons heading="Lo que costaba" items={[["Accesos ajenos", "Un cliente mono servicio vería opciones que no le corresponden."], ["Contexto ignorado", "Desarrollo confirmó que el servicio ya era identificable."]]} />
-              </Grid>
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 2 }}>
-              <Surface>
-                <TransversalMock />
-              </Surface>
-            </GridItem>
+          <Box mt="12">
+            <Surface>
+              <TransversalMock />
+            </Surface>
+          </Box>
+
+          <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} columnGap="12" rowGap="10">
+            <ProsCons
+              heading="Puntos a favor"
+              positive
+              items={["Se priorizaron accesos con más clics de cada segmento.", "Menos opciones a la vista: más rápida la decisión."]}
+            />
+            <ProsCons
+              heading="Puntos en contra"
+              items={[
+                "Ruido para el cliente mono-servicio: ve opciones que no le aplican.",
+                "Si es posible identificar qué servicio tiene el cliente, conviene derivarlo directo a la pantalla de ese servicio.",
+                "Para dudas menos frecuentes, el usuario puede profundizar en la pantalla específica de cada segmento.",
+                "Prepago tiene poca interacción frente a móvil y hogar: por volumen de clics y las opciones visibles no son útiles para ellos (solo revisa y recarga tu saldo).",
+              ]}
+            />
           </Grid>
 
-          <Body mt="10">Expuse mis argumentos al Product Owner y acordamos mantener pantallas específicas por segmento.</Body>
-          <Callout>Reducir opciones no sirve si son las opciones equivocadas.</Callout>
+          <Box mt="14">
+            <Text textStyle="bodyLgMedium" fontWeight="700" color="app.fg">
+              ¿Por qué descarté esta alternativa?
+            </Text>
+            <Body small mt="3">
+              Aunque reducía la cantidad de opciones visibles y posiblemente el tiempo de elección (ley de Hick), presentaba una
+              limitación importante: los clientes podían encontrarse con accesos que no correspondían a su servicio.
+            </Body>
+            <Body small mt="4">
+              Conversando con desarrollo, se nos dijo que se podía identificar el servicio asociado al cliente, y se decidió junto con la
+              PO mantener pantallas específicas para móvil, prepago y hogar, priorizando las opciones más relevantes para cada uno.
+            </Body>
+          </Box>
         </Section>
 
         {/* Pantallas por segmento */}
@@ -562,24 +582,22 @@ function Iteration({ tag, title, intro, children }: { tag: string; title: string
   );
 }
 
-function ProsCons({ heading, items, positive = false }: { heading: string; items: [string, string][]; positive?: boolean }) {
+function ProsCons({ heading, items, positive = false }: { heading: string; items: string[]; positive?: boolean }) {
   const Icon = positive ? Check : Minus;
+  const tone = positive ? "app.positive" : "app.negative";
   return (
     <Box>
-      <Text textStyle="footnoteMedium">
+      <Text textStyle="bodyLgMedium" fontWeight="700" color={tone}>
         {heading}
       </Text>
-      <List.Root listStyle="none" m="0" mt="4" gap="4">
-        {items.map(([t, b]) => (
+      <List.Root listStyle="none" m="0" mt="4" gap="3">
+        {items.map((t) => (
           <List.Item key={t} display="flex" gap="3">
-            <Box mt="0.5" flexShrink={0} color={positive ? "app.fg" : "app.subtle"}>
-              <Icon size={16} strokeWidth={2} aria-hidden />
+            <Box mt="1" flexShrink={0} color={tone}>
+              <Icon size={18} strokeWidth={2.5} aria-hidden />
             </Box>
             <Text textStyle="body" color="app.muted">
-              <Text as="span" fontWeight="semibold" color="app.fg">
-                {t}.
-              </Text>{" "}
-              {b}
+              {t}
             </Text>
           </List.Item>
         ))}

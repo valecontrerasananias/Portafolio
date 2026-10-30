@@ -55,6 +55,8 @@ const config = defineConfig({
         "app.surface": { value: "#f5f5f5" },
         "app.accent": { value: "#148ea9" }, // Button hover (texto/cifras con contraste)
         "app.accentSoft": { value: "#17d5ff1f" }, // Button al 12%
+        "app.positive": { value: "#2f7d1f" }, // puntos a favor
+        "app.negative": { value: "#d03a55" }, // puntos en contra
         "app.button": { value: "#17d5ff" },
         "app.buttonHover": { value: "#148ea9" },
         "app.buttonFg": { value: "#ffffff" },
