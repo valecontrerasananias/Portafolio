@@ -60,6 +60,18 @@ const Stat = ({ value, children }: { value: string; children: ReactNode }) => (
   </Flex>
 );
 
+/* Dato destacado: tarjeta con borde continuo; la cifra y su frase en #17D5FF, el resto en gris */
+const StatCard = ({ highlight, children }: { highlight: string; children: ReactNode }) => (
+  <Box rounded="container" borderWidth="1px" borderStyle="solid" borderColor="app.borderStrong" p={{ base: 6, md: 8 }}>
+    <Text textStyle="headline" color="app.muted">
+      <Text as="span" fontWeight="600" color="app.button">
+        {highlight}
+      </Text>{" "}
+      {children}
+    </Text>
+  </Box>
+);
+
 const Callout = ({ children }: { children: ReactNode }) => (
   <Box mt="16" rounded="container" bg="app.accentSoft" p={{ base: 8, md: 10 }}>
     <Text maxW="2xl" textStyle="headlineMedium" color="app.fg">
@@ -200,10 +212,13 @@ export default function CaseStudy() {
             En agosto hubo cerca de 35.000 intercepciones de IVR. La mayoría no usaba lo que se le ofrecía. Antes de rediseñar nada,
             quería saber por qué.
           </Body>
-          <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap={{ base: 10, md: 16 }} alignItems="center">
-            <AbandonMock />
-            <Stat value="55%">de los clientes abandonaba el flujo sin interactuar con ninguna pantalla del IVR</Stat>
+          <Grid mt="10" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="6">
+            <StatCard highlight="55% de los clientes abandonaba el flujo">sin interactuar con ninguna pantalla del IVR.</StatCard>
+            <StatCard highlight="30% de los clientes seguía hacia la llamada">al call center.</StatCard>
           </Grid>
+          <Box mt="12" maxW="lg">
+            <AbandonMock />
+          </Box>
         </Section>
 
         {/* Hipótesis */}
