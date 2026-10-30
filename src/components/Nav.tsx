@@ -3,6 +3,7 @@ import { Box, Flex, Link } from "@chakra-ui/react";
 const links = [
   { href: "#top", label: "Caso de estudio" },
   { href: "#aprendizajes", label: "Aprendizajes" },
+  { href: "#siguiente", label: "Próximo caso" },
 ];
 
 export default function Nav() {

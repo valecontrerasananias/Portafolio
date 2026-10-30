@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { Box, Flex, Grid, GridItem, Heading, List, Separator, Text } from "@chakra-ui/react";
-import { Check, Home, Minus, Smartphone, Wifi } from "lucide-react";
+import { Box, Flex, Grid, GridItem, Heading, Link, List, Separator, Text } from "@chakra-ui/react";
+import { ArrowRight, Check, Home, Image as ImageIcon, Minus, Smartphone, Wifi } from "lucide-react";
 import Nav from "../components/Nav";
 import Reveal from "../components/Reveal";
 import { AbandonMock, IvrScreen, PermissionsMock, PushLandingMock, SegmentsMock, TransversalMock } from "../components/mocks";
@@ -533,6 +533,63 @@ export default function CaseStudy() {
             ))}
           </Grid>
         </Section>
+
+        {/* Próximo caso de estudio (contenido de ejemplo: reemplazar título, texto, enlace e imagen) */}
+        <Container id="siguiente">
+          <Reveal>
+            <Heading as="h2" textAlign="center" textStyle={{ base: "mh4", md: "h4" }}>
+              Próximo caso de estudio
+            </Heading>
+            <Link
+              href="#top"
+              mt="10"
+              display="grid"
+              gridTemplateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }}
+              overflow="hidden"
+              bg="app.card"
+              rounded={{ base: "24px", md: "32px" }}
+              _hover={{ textDecoration: "none" }}
+              role="group"
+            >
+              <Flex direction="column" justify="center" gap="6" p={{ base: 6, md: 12 }} order={{ base: 2, md: 1 }}>
+                <Text textStyle="footnoteMedium" fontWeight="600" letterSpacing="0.04em" textTransform="uppercase" color="app.fg">
+                  Empresa | 2024
+                </Text>
+                <Heading as="h3" textStyle={{ base: "mh4", md: "h4" }} lineHeight="1.15" color="app.fg">
+                  Título del próximo caso de estudio
+                </Heading>
+                <Text textStyle="headline" color="app.muted">
+                  Breve descripción del proyecto en una o dos líneas.
+                </Text>
+                <Flex
+                  alignSelf="flex-start"
+                  align="center"
+                  gap="2"
+                  px="6"
+                  h="12"
+                  rounded="full"
+                  bg="app.button"
+                  color="app.fg"
+                  textStyle="footnoteMedium"
+                  fontWeight="700"
+                  letterSpacing="0.04em"
+                  textTransform="uppercase"
+                  transition="background 0.2s"
+                  _groupHover={{ bg: "app.buttonHover", color: "app.buttonFg" }}
+                >
+                  Ver caso de estudio
+                  <ArrowRight size={16} aria-hidden />
+                </Flex>
+              </Flex>
+              <Flex bg="app.button" align="center" justify="center" p={{ base: 8, md: 12 }} minH="72" order={{ base: 1, md: 2 }}>
+                <Flex w="full" maxW="sm" aspectRatio="4 / 3" bg="app.bg" rounded="24px" direction="column" align="center" justify="center" gap="2" color="app.subtle">
+                  <ImageIcon size={32} strokeWidth={1.5} aria-hidden />
+                  <Text textStyle="footnote">Imagen del próximo caso</Text>
+                </Flex>
+              </Flex>
+            </Link>
+          </Reveal>
+        </Container>
       </Flex>
 
       <Separator borderColor="app.border" />
