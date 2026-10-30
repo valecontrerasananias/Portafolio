@@ -140,6 +140,16 @@ const annotations = [
   { n: 6, title: "Continuar llamada", body: "Pasa a secundaria sin quitar la atención telefónica.", x: 94, y: 93 },
 ];
 
+const decisions = [
+  ["Plan móvil", "Unifiqué “revisar” y “pagar boleta” en un solo acceso, junto con mejorar la señal."],
+  ["Hogar", "Protagonismo a fallas de internet y consulta de plan; agrupé boleta y sumé reclamos."],
+  ["Prepago", "Mantuve saldo y bolsas como protagonistas, retiré una opción que no correspondía y sumé “agregar un prepago” y reclamos."],
+  [
+    "Decisión transversal",
+    "WhatsApp pasó a ser la acción principal y continuar la llamada quedó como secundaria. Así se refuerza el canal digital sin quitar la atención telefónica a quien la necesite.",
+  ],
+];
+
 const metrics = [
   ["Abandono (55%)", "debería bajar si la pantalla comunica mejor."],
   ["Interacción con accesos (12%)", "debería subir si la jerarquía por segmento es acertada."],
@@ -345,45 +355,14 @@ export default function CaseStudy() {
         {/* Pantallas por segmento */}
         <Section label="Solución: pantallas por segmento">
           <H2>Cada servicio, sus propias prioridades</H2>
-          <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="12" alignItems="start">
-            <Box>
-              <H3>Reglas de diseño en los tres segmentos</H3>
-              <List.Root as="ol" listStyle="none" m="0" mt="6" gap="6">
-                {rules.map(([t, b], i) => (
-                  <List.Item key={t} display="flex" gap="4">
-                    <Text textStyle="footnoteMedium" color="app.subtle">
-                      0{i + 1}
-                    </Text>
-                    <Box>
-                      <Text textStyle="bodyMedium">
-                        {t}
-                      </Text>
-                      <Text mt="1" textStyle="body" color="app.muted">
-                        {b}
-                      </Text>
-                    </Box>
-                  </List.Item>
-                ))}
-              </List.Root>
-            </Box>
-            <Box>
-              <H3>Decisiones por segmento</H3>
-              <Body small mt="3">
-                <b>Plan móvil:</b> unifiqué “revisar” y “pagar boleta” en un solo acceso, junto con mejorar la señal.
-              </Body>
-              <Body small mt="3">
-                <b>Hogar:</b> protagonismo a fallas de internet y consulta de plan; agrupé boleta y sumé reclamos.
-              </Body>
-              <Body small mt="3">
-                <b>Prepago:</b> mantuve saldo y bolsas como protagonistas, retiré una opción que no correspondía y sumé “agregar un
-                prepago” y reclamos.
-              </Body>
-              <Body small mt="3">
-                <b>Decisión transversal:</b> WhatsApp pasó a ser la acción principal y continuar la llamada quedó como secundaria. Así
-                se refuerza el canal digital sin quitar la atención telefónica a quien la necesite.
-              </Body>
-            </Box>
-          </Grid>
+          <Box mt="12">
+            <H3>Reglas de diseño en los tres segmentos</H3>
+            <NumberedList items={rules} />
+          </Box>
+          <Box mt="14">
+            <H3>Decisiones por segmento</H3>
+            <NumberedList items={decisions} />
+          </Box>
 
           <Box mt="16">
             <Surface>
@@ -571,6 +550,27 @@ export default function CaseStudy() {
 }
 
 /* ---------- bloques reutilizables ---------- */
+
+/* Lista numerada: número, título y descripción con el mismo estilo en todas las listas */
+function NumberedList({ items }: { items: string[][] }) {
+  return (
+    <List.Root as="ol" listStyle="none" m="0" mt="6" gap="6" maxW="2xl">
+      {items.map(([t, b], i) => (
+        <List.Item key={t} display="flex" gap="4">
+          <Text textStyle="footnoteMedium" color="app.subtle" minW="6" flexShrink={0}>
+            0{i + 1}
+          </Text>
+          <Box>
+            <Text textStyle="bodyMedium">{t}</Text>
+            <Text mt="1" textStyle="body" color="app.muted">
+              {b}
+            </Text>
+          </Box>
+        </List.Item>
+      ))}
+    </List.Root>
+  );
+}
 
 function Iteration({ tag, title, intro, children }: { tag: string; title: string; intro: string; children: ReactNode }) {
   return (
