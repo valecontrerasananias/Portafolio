@@ -13,15 +13,20 @@ const Container = (p: { children: ReactNode; id?: string }) => (
   </Box>
 );
 
+/* Pre-título en forma de tag (píldora) */
+const Tag = ({ children }: { children: ReactNode }) => (
+  <Text as="span" display="inline-flex" alignItems="center" px="4" py="1.5" rounded="full" bg="app.accentSoft" color="app.fg" textStyle="footnoteMedium" fontWeight="600">
+    {children}
+  </Text>
+);
+
 function Section({ id, label, children }: { id?: string; label: string; children: ReactNode }) {
   return (
     <Container id={id}>
       <Reveal>
         <Grid templateColumns="repeat(12, 1fr)" columnGap="8" rowGap="4" borderTopWidth="1px" borderColor="app.border" pt="10">
           <GridItem colSpan={{ base: 12, md: 3 }}>
-            <Text textStyle="footnoteMedium" color="app.subtle">
-              {label}
-            </Text>
+            <Tag>{label}</Tag>
           </GridItem>
           <GridItem colSpan={{ base: 12, md: 9 }}>{children}</GridItem>
         </Grid>
@@ -51,7 +56,7 @@ const Body = ({ children, small, ...rest }: { children: ReactNode; small?: boole
 
 const Stat = ({ value, children }: { value: string; children: ReactNode }) => (
   <Flex align="baseline" gap="4">
-    <Text textStyle="h3" color="app.accent" flexShrink={0}>
+    <Text textStyle="h3" fontWeight="700" color="app.fg" flexShrink={0}>
       {value}
     </Text>
     <Text maxW="sm" textStyle="footnote" color="app.muted">
@@ -157,9 +162,7 @@ export default function CaseStudy() {
         {/* Hero */}
         <Container>
           <Reveal pt="20">
-            <Text textStyle="footnote" color="app.subtle">
-              Caso de estudio · Mi Movistar
-            </Text>
+            <Tag>Caso de estudio · Mi Movistar</Tag>
             <Heading as="h1" mt="4" maxW="4xl" textStyle={{ base: "mh1", md: "h1" }} lineHeight="1.05">
               IVR Mi Movistar: transformando llamadas en oportunidades de autogestión
             </Heading>
