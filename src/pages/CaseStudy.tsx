@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Box, Flex, Grid, GridItem, Heading, Link, List, Separator, Text } from "@chakra-ui/react";
-import { ArrowRight, Check, Home, Image as ImageIcon, Minus, Smartphone, Wifi } from "lucide-react";
+import { ArrowRight, Check, Home, Image as ImageIcon, LayoutGrid, Megaphone, ShieldCheck, Minus, Smartphone, Wifi } from "lucide-react";
 import Nav from "../components/Nav";
 import Reveal from "../components/Reveal";
 import { AbandonMock, IvrScreen, PermissionsMock, PushLandingMock, SegmentsMock, TransversalMock } from "../components/mocks";
@@ -151,9 +151,9 @@ const decisions = [
 ];
 
 const improvements = [
-  ["Autogestión", "Accesos reorganizados según las prioridades de cada segmento."],
-  ["Activación", "Instrucciones y flujos de permisos adaptados a distintos dispositivos."],
-  ["Comunicación", "Una landing informativa para clientes que todavía no han activado la funcionalidad."],
+  { icon: LayoutGrid, title: "Autogestión", body: "Accesos reorganizados según las prioridades de cada segmento." },
+  { icon: ShieldCheck, title: "Activación", body: "Instrucciones y flujos de permisos adaptados a distintos dispositivos." },
+  { icon: Megaphone, title: "Comunicación", body: "Una landing informativa para clientes que todavía no han activado la funcionalidad." },
 ];
 
 const lessons = [
@@ -318,9 +318,17 @@ export default function CaseStudy() {
                 ingresarlos. Ahí había un vacío que llenar.
               </Body>
             </Box>
-            <Box pt="1">
+            <Flex
+              alignSelf="center"
+              justify="center"
+              rounded="container"
+              borderWidth="1px"
+              borderStyle="solid"
+              borderColor="app.borderStrong"
+              p={{ base: 6, md: 8 }}
+            >
               <Stat value="40%">de las llamadas se concentraba en cinco motivos</Stat>
-            </Box>
+            </Flex>
           </Grid>
         </Section>
 
@@ -501,14 +509,20 @@ export default function CaseStudy() {
           <Body mt="6">La propuesta abarca tres mejoras:</Body>
 
           <Grid mt="8" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(3, minmax(0, 1fr))" }} gap="6">
-            {improvements.map(([t, b]) => (
-              <Card key={t}>
-                <H3 size="bodyLgMedium">{t}</H3>
-                <Body small mt="2">
-                  {b}
-                </Body>
-              </Card>
-            ))}
+            {improvements.map((it) => {
+              const Icon = it.icon;
+              return (
+                <Card key={it.title}>
+                  <Icon size={20} strokeWidth={1.5} aria-hidden />
+                  <H3 size="bodyLgMedium" mt="4">
+                    {it.title}
+                  </H3>
+                  <Body small mt="2">
+                    {it.body}
+                  </Body>
+                </Card>
+              );
+            })}
           </Grid>
 
           <Body mt="8">
