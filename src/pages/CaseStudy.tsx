@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Box, Flex, Grid, GridItem, Heading, Link, List, Separator, Text } from "@chakra-ui/react";
-import { ArrowRight, Check, Home, Image as ImageIcon, LayoutGrid, Megaphone, ShieldCheck, Minus, Smartphone, Wifi } from "lucide-react";
+import { ArrowRight, Check, Home, Image as ImageIcon, LayoutGrid, LayoutTemplate, Megaphone, ShieldCheck, Minus, Smartphone, Wifi } from "lucide-react";
 import Nav from "../components/Nav";
 import Reveal from "../components/Reveal";
 import { AbandonMock, IvrScreen, PermissionsMock, PushLandingMock, SegmentsMock, TransversalMock } from "../components/mocks";
@@ -75,14 +75,6 @@ const StatCard = ({ emoji, highlight, children }: { emoji: string; highlight: st
       <Text as="span" fontWeight="700" color="app.fg">
         {highlight}
       </Text>{" "}
-      {children}
-    </Text>
-  </Box>
-);
-
-const Callout = ({ children }: { children: ReactNode }) => (
-  <Box mt="16" rounded="container" bg="app.accentSoft" p={{ base: 8, md: 10 }}>
-    <Text maxW="2xl" textStyle="headlineMedium" color="app.fg">
       {children}
     </Text>
   </Box>
@@ -501,9 +493,22 @@ export default function CaseStudy() {
             <Surface>
               <PushLandingMock />
             </Surface>
+            <Flex mt="8" gap="4" align="flex-start">
+              <Box mt="1" flexShrink={0} color="app.fg">
+                <LayoutTemplate size={22} strokeWidth={1.5} aria-hidden />
+              </Box>
+              <Flex direction="column" gap="4">
+                <Body small>
+                  La pantalla presenta ejemplos de lo que puede encontrar y explica cómo activar los permisos para acceder a alternativas
+                  de ayuda en pantalla si deciden marcar el 103.
+                </Body>
+                <Body small>
+                  Esta solución amplió el alcance del proyecto, incorporando un nuevo punto de contacto para comunicar el valor de la
+                  funcionalidad.
+                </Body>
+              </Flex>
+            </Flex>
           </Iteration>
-
-          <Callout>Una misma necesidad no siempre se resuelve con la misma interacción. La experiencia debe adaptarse a lo que cada dispositivo permite.</Callout>
         </Section>
 
         {/* Resultados */}
