@@ -228,9 +228,9 @@ export default function CaseStudy() {
 
         {/* Contexto */}
         <Section label="Contexto">
-          <Text maxW="3xl" textStyle="headlineMedium" fontSize="24px" lineHeight="34px">
+          <Heading as="h2" maxW="3xl" textStyle="h5" color="app.fg">
             Cuando marcas el 103, la app puede ayudarte antes de que llames al call center.
-          </Text>
+          </Heading>
           <Body mt="6">
             El IVR es el sistema de atención telefónica automatizado de Movistar. En la app Mi Movistar, al marcar el 103 el cliente ve
             en pantalla alternativas de ayuda para resolver su consulta sin esperar a un ejecutivo.
