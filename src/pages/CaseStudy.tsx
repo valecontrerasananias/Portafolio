@@ -66,8 +66,11 @@ const Stat = ({ value, children }: { value: string; children: ReactNode }) => (
 );
 
 /* Dato destacado: tarjeta con borde continuo; la cifra y su frase en negrita negra (contraste), el resto en gris */
-const StatCard = ({ highlight, children }: { highlight: string; children: ReactNode }) => (
+const StatCard = ({ emoji, highlight, children }: { emoji: string; highlight: string; children: ReactNode }) => (
   <Box rounded="container" borderWidth="1px" borderStyle="solid" borderColor="app.borderStrong" p={{ base: 6, md: 8 }}>
+    <Text fontSize="28px" lineHeight="1" mb="4" aria-hidden>
+      {emoji}
+    </Text>
     <Text textStyle="headline" color="app.muted">
       <Text as="span" fontWeight="700" color="app.fg">
         {highlight}
@@ -251,8 +254,8 @@ export default function CaseStudy() {
             quería saber por qué.
           </Body>
           <Grid mt="10" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="6">
-            <StatCard highlight="55% de los clientes abandonaba el flujo">sin interactuar con ninguna pantalla del IVR.</StatCard>
-            <StatCard highlight="30% de los clientes seguía hacia la llamada">al call center.</StatCard>
+            <StatCard emoji="🚪" highlight="55% de los clientes abandonaba el flujo">sin interactuar con ninguna pantalla del IVR.</StatCard>
+            <StatCard emoji="📞" highlight="30% de los clientes seguía hacia la llamada">al call center.</StatCard>
           </Grid>
           <Box mt="12" maxW="lg">
             <AbandonMock />
@@ -610,7 +613,7 @@ export default function CaseStudy() {
 
       <Separator borderColor="app.border" />
       <Flex as="footer" maxW="6xl" mx="auto" px="6" py="8" wrap="wrap" justify="space-between" gap="4" textStyle="footnote" color="app.subtle">
-        <Text>Tu nombre © 2026</Text>
+        <Text>Valentina Contreras © 2026</Text>
         <Text>UX/UI Designer</Text>
       </Flex>
     </Box>
