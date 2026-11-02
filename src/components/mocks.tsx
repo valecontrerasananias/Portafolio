@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Box, Flex, Grid, Text } from "@chakra-ui/react";
+import { useInView } from "./Reveal";
 import { Bell, Check, ChevronRight, MessageCircle, Phone, Settings } from "lucide-react";
 
 /* Maquetas ilustrativas en Chakra. Reemplázalas por capturas reales de Figma cuando las tengas. */
@@ -152,6 +153,7 @@ export function SegmentsMock() {
 
 /* Datos de abandono: 35.000 intercepciones */
 export function AbandonMock() {
+  const [ref, shown] = useInView<HTMLDivElement>();
   const rows = [
     { label: "Abandona el flujo", pct: 55, hi: true },
     { label: "Sigue hacia la llamada", pct: 30 },
@@ -159,8 +161,8 @@ export function AbandonMock() {
     { label: "Va a WhatsApp", pct: 3 },
   ];
   return (
-    <Flex direction="column" gap="5">
-      {rows.map((r) => (
+    <Flex ref={ref} direction="column" gap="5">
+      {rows.map((r, i) => (
         <Box key={r.label}>
           <Flex justify="space-between" fontSize="sm" mb="1.5">
             <Text color="app.fg" fontWeight={r.hi ? "semibold" : "normal"}>
@@ -171,7 +173,7 @@ export function AbandonMock() {
             </Text>
           </Flex>
           <Box h="2.5" bg="app.border" rounded="full">
-            <Box h="full" w={`${r.pct}%`} bg={r.hi ? "app.button" : "app.borderStrong"} rounded="full" />
+            <Box h="full" w={shown ? `${r.pct}%` : "0%"} bg={r.hi ? "app.button" : "app.borderStrong"} rounded="full" transition="width 1s cubic-bezier(0.22, 1, 0.36, 1)" transitionDelay={`${i * 120}ms`} />
           </Box>
         </Box>
       ))}

@@ -66,8 +66,9 @@ const Stat = ({ value, children }: { value: string; children: ReactNode }) => (
 );
 
 /* Dato destacado: tarjeta con borde continuo; la cifra y su frase en negrita negra (contraste), el resto en gris */
-const StatCard = ({ emoji, highlight, children }: { emoji: string; highlight: string; children: ReactNode }) => (
-  <Box rounded="container" borderWidth="1px" borderStyle="solid" borderColor="app.borderStrong" p={{ base: 6, md: 8 }}>
+const StatCard = ({ emoji, highlight, children, delay = 0 }: { emoji: string; highlight: string; children: ReactNode; delay?: number }) => (
+  <Reveal h="full" delay={delay}>
+  <Box rounded="container" borderWidth="1px" borderStyle="solid" borderColor="app.borderStrong" p={{ base: 6, md: 8 }} h="full">
     <Text fontSize="28px" lineHeight="1" mb="4" aria-hidden>
       {emoji}
     </Text>
@@ -78,13 +79,16 @@ const StatCard = ({ emoji, highlight, children }: { emoji: string; highlight: st
       {children}
     </Text>
   </Box>
+  </Reveal>
 );
 
 /* Card de contenido: fondo gris claro y esquinas amplias, sin bordes ni divisores */
-const Card = ({ children }: { children: ReactNode }) => (
-  <Box bg="app.card" rounded={{ base: "24px", md: "32px" }} p={{ base: 6, md: 8 }}>
-    {children}
-  </Box>
+const Card = ({ children, delay = 0 }: { children: ReactNode; delay?: number }) => (
+  <Reveal h="full" delay={delay}>
+    <Box bg="app.card" rounded={{ base: "24px", md: "32px" }} p={{ base: 6, md: 8 }} h="full">
+      {children}
+    </Box>
+  </Reveal>
 );
 
 const Surface = ({ children }: { children: ReactNode }) => (
@@ -247,7 +251,7 @@ export default function CaseStudy() {
           </Body>
           <Grid mt="10" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="6">
             <StatCard emoji="🚪" highlight="55% de los clientes abandonaba el flujo">sin interactuar con ninguna pantalla del IVR.</StatCard>
-            <StatCard emoji="📞" highlight="30% de los clientes seguía hacia la llamada">al call center.</StatCard>
+            <StatCard delay={150} emoji="📞" highlight="30% de los clientes seguía hacia la llamada">al call center.</StatCard>
           </Grid>
           <Box mt="12" maxW="lg">
             <AbandonMock />
@@ -262,7 +266,7 @@ export default function CaseStudy() {
           </Body>
           <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="6">
             {hypotheses.map((h, i) => (
-              <Card key={h.title}>
+              <Card key={h.title} delay={i * 150}>
                 <Text textStyle="footnoteMedium" color="app.subtle">
                   Hipótesis {i + 1}
                 </Text>
@@ -284,10 +288,10 @@ export default function CaseStudy() {
               mío.
             </Body>
             <Grid mt="8" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(3, minmax(0, 1fr))" }} gap="6">
-              {segments.map((s) => {
+              {segments.map((s, i) => {
                 const Icon = s.icon;
                 return (
-                  <Card key={s.title}>
+                  <Card key={s.title} delay={i * 150}>
                     <Icon size={20} strokeWidth={1.5} aria-hidden />
                     <H3 size="bodyLgMedium" mt="4">
                       {s.title}
@@ -517,10 +521,10 @@ export default function CaseStudy() {
           <Body mt="6">La propuesta abarca tres mejoras:</Body>
 
           <Grid mt="8" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(3, minmax(0, 1fr))" }} gap="6">
-            {improvements.map((it) => {
+            {improvements.map((it, i) => {
               const Icon = it.icon;
               return (
-                <Card key={it.title}>
+                <Card key={it.title} delay={i * 150}>
                   <Icon size={20} strokeWidth={1.5} aria-hidden />
                   <H3 size="bodyLgMedium" mt="4">
                     {it.title}
@@ -543,7 +547,7 @@ export default function CaseStudy() {
         <Section id="aprendizajes" label="Lo que aprendí">
           <Grid templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} columnGap="12" rowGap="10">
             {lessons.map((l, i) => (
-              <Flex key={l.title} gap="4">
+              <Reveal key={l.title} display="flex" gap="4" delay={i * 150}>
                 <Text textStyle="footnoteMedium" color="app.subtle">
                   0{i + 1}
                 </Text>
@@ -553,7 +557,7 @@ export default function CaseStudy() {
                     {l.body}
                   </Body>
                 </Box>
-              </Flex>
+              </Reveal>
             ))}
           </Grid>
         </Section>
@@ -632,16 +636,18 @@ function NumberedList({ items }: { items: string[][] }) {
   return (
     <List.Root as="ol" listStyle="none" m="0" mt="6" gap="6" maxW="2xl">
       {items.map(([t, b], i) => (
-        <List.Item key={t} display="flex" gap="4">
-          <Text textStyle="footnoteMedium" color="app.subtle" minW="6" flexShrink={0}>
-            0{i + 1}
-          </Text>
-          <Box>
-            <Text textStyle="bodyMedium">{t}</Text>
-            <Text mt="1" textStyle="body" color="app.muted">
-              {b}
+        <List.Item key={t}>
+          <Reveal display="flex" gap="4" delay={i * 90}>
+            <Text textStyle="footnoteMedium" color="app.subtle" minW="6" flexShrink={0}>
+              0{i + 1}
             </Text>
-          </Box>
+            <Box>
+              <Text textStyle="bodyMedium">{t}</Text>
+              <Text mt="1" textStyle="body" color="app.muted">
+                {b}
+              </Text>
+            </Box>
+          </Reveal>
         </List.Item>
       ))}
     </List.Root>
@@ -674,14 +680,16 @@ function ProsCons({ heading, items, positive = false }: { heading: string; items
         {heading}
       </Text>
       <List.Root listStyle="none" m="0" mt="4" gap="3">
-        {items.map((t) => (
-          <List.Item key={t} display="flex" gap="3">
-            <Box mt="1" flexShrink={0} color={tone}>
-              <Icon size={18} strokeWidth={2.5} aria-hidden />
-            </Box>
-            <Text textStyle="body" color="app.muted">
-              {t}
-            </Text>
+        {items.map((t, i) => (
+          <List.Item key={t}>
+            <Reveal display="flex" gap="3" delay={i * 90}>
+              <Box mt="1" flexShrink={0} color={tone}>
+                <Icon size={18} strokeWidth={2.5} aria-hidden />
+              </Box>
+              <Text textStyle="body" color="app.muted">
+                {t}
+              </Text>
+            </Reveal>
           </List.Item>
         ))}
       </List.Root>
