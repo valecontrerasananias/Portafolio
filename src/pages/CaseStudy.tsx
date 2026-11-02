@@ -369,10 +369,10 @@ export default function CaseStudy() {
         </Section>
 
         {/* Pantallas por segmento */}
-        <Section label="Solución: pantallas por segmento">
+        <Section label="Solución">
           <H2>Cada servicio, sus propias prioridades</H2>
           <Box mt="12">
-            <H3>Reglas de diseño en los tres segmentos</H3>
+            <H3>Pantallas por segmento: reglas de diseño</H3>
             <NumberedList items={rules} />
           </Box>
           <Box mt="14">
@@ -446,7 +446,7 @@ export default function CaseStudy() {
         </Container>
 
         {/* Permisos */}
-        <Section label="Solución: activación de permisos">
+        <Section label="Solución">
           <H2>Activar la experiencia en cada dispositivo</H2>
           <Body mt="6">
             El IVR requiere permisos de Android, y la experiencia de activación variaba según la marca.
@@ -495,8 +495,8 @@ export default function CaseStudy() {
 
         {/* Resultados */}
         <Section label="Resultados">
-          <Body>El rediseño fue aprobado por stakeholders y se encuentra en desarrollo para Android.</Body>
-          <Body mt="4">La propuesta abarca tres mejoras:</Body>
+          <H2>Diseño aprobado y en desarrollo</H2>
+          <Body mt="6">La propuesta abarca tres mejoras:</Body>
 
           <Grid mt="8" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(3, minmax(0, 1fr))" }} gap="6">
             {improvements.map(([t, b]) => (
