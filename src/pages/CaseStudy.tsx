@@ -118,9 +118,9 @@ const hypotheses = [
 ];
 
 const segments = [
-  { icon: Smartphone, title: "Prepago", body: "41% consultar y recargar saldo · 14,8% comprar bolsas." },
-  { icon: Home, title: "Hogar", body: "14,5% resolver fallas de internet · 7,3% revisar y cambiar plan." },
-  { icon: Wifi, title: "Plan móvil", body: "6% revisar y pagar boleta · 5,5% mejorar la señal." },
+  { icon: Home, title: "Hogar", lines: ["14,5% resolver fallas de internet", "7,3% revisar y cambiar plan"] },
+  { icon: Wifi, title: "Plan móvil", lines: ["6% revisar y pagar boleta", "5,5% mejorar la señal"] },
+  { icon: Smartphone, title: "Prepago", lines: ["41% consultar y recargar saldo", "14,8% comprar bolsas"] },
 ];
 
 const rules = [
@@ -296,14 +296,21 @@ export default function CaseStudy() {
                     <H3 size="bodyLgMedium" mt="4">
                       {s.title}
                     </H3>
-                    <Body small mt="2">
-                      {s.body}
-                    </Body>
+                    <Flex direction="column" mt="2">
+                      {s.lines.map((l) => (
+                        <Text key={l} textStyle="body" color="app.muted">
+                          {l}
+                        </Text>
+                      ))}
+                    </Flex>
                   </Card>
                 );
               })}
             </Grid>
             <Text mt="8" textStyle="headlineMedium" color="app.fg">
+              <Text as="span" aria-hidden>
+                💡
+              </Text>{" "}
               Cada segmento necesitaba su propia jerarquía.
             </Text>
           </Box>
@@ -317,17 +324,11 @@ export default function CaseStudy() {
                 ingresarlos. Ahí había un vacío que llenar.
               </Body>
             </Box>
-            <Flex
-              alignSelf="center"
-              justify="center"
-              rounded="container"
-              borderWidth="1px"
-              borderStyle="solid"
-              borderColor="app.borderStrong"
-              p={{ base: 6, md: 8 }}
-            >
-              <Stat value="40%">de las llamadas se concentraba en cinco motivos</Stat>
-            </Flex>
+            <Box alignSelf="center">
+              <StatCard emoji="📊" highlight="40% de las llamadas">
+                se concentraba en cinco motivos.
+              </StatCard>
+            </Box>
           </Grid>
         </Section>
 
