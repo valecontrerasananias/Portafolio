@@ -179,14 +179,16 @@ export default function CaseStudy() {
         <Container>
           <Reveal pt="20">
             <Tag>Caso de estudio · Mi Movistar</Tag>
-            <Heading as="h1" mt="4" maxW="4xl" textStyle={{ base: "mh1", md: "h1" }} lineHeight="1.05">
-              IVR Mi Movistar: transformando llamadas en oportunidades de autogestión
+            <Heading as="h1" mt="4" textStyle={{ base: "mh1", md: "h1" }} lineHeight="1.05">
+              IVR Mi Movistar:
+              <br />
+              transformando llamadas en oportunidades de autogestión
             </Heading>
-            <Text mt="6" maxW="2xl" textStyle="headline" color="app.muted">
+            <Text mt="6" textStyle="headline" color="app.muted">
               Rediseñé la experiencia de autogestión del IVR para que los clientes resuelvan sus dudas sin llamar al call center.
             </Text>
 
-            <Flex direction="column" gap="4" mt="8" maxW="2xl">
+            <Flex direction="column" gap="4" mt="8">
               {[
                 ["El problema", "de 35.000 intercepciones al mes, el 55% abandonaba sin interactuar con pantallas de IVR."],
                 [
