@@ -579,6 +579,7 @@ export default function CaseStudy() {
               rounded={{ base: "24px", md: "32px" }}
               _hover={{ textDecoration: "none" }}
               role="group"
+              className="group"
             >
               <Flex direction="column" justify="center" gap="6" p={{ base: 6, md: 12 }} order={{ base: 2, md: 1 }}>
                 <Text textStyle="footnoteMedium" fontWeight="600" letterSpacing="0.04em" textTransform="uppercase" color="app.fg">
@@ -603,11 +604,14 @@ export default function CaseStudy() {
                   fontWeight="700"
                   letterSpacing="0.04em"
                   textTransform="uppercase"
-                  transition="background 0.2s"
-                  _groupHover={{ bg: "app.buttonHover", color: "app.buttonFg" }}
+                  transition="background 0.2s, transform 0.15s"
+                  _groupHover={{ bg: "#52aed0" }}
+                  _groupActive={{ bg: "#52aed0", transform: "scale(0.97)" }}
                 >
                   Ver caso de estudio
-                  <ArrowRight size={16} aria-hidden />
+                  <Box display="flex" transition="transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)" _groupHover={{ transform: "translateX(6px)" }}>
+                    <ArrowRight size={16} aria-hidden />
+                  </Box>
                 </Flex>
               </Flex>
               <Flex bg="app.button" align="center" justify="center" p={{ base: 8, md: 12 }} minH="72" order={{ base: 1, md: 2 }}>

@@ -15,7 +15,7 @@ const linkProps = { color: "app.muted", _hover: { color: "app.fg", textDecoratio
 export default function Nav() {
   const [open, setOpen] = useState(false);
   return (
-    <Box as="header" position="sticky" top="0" zIndex="10" bg="whiteAlpha.900" backdropFilter="blur(8px)" borderBottomWidth="1px" borderColor="app.border">
+    <Box as="header" position="sticky" top="0" zIndex="10" bg="whiteAlpha.900" backdropFilter="blur(8px)" boxShadow="0 2px 14px rgba(0,0,0,0.07)">
       <Flex as="nav" maxW="6xl" mx="auto" px="6" h="14" align="center" justify="space-between">
         <Link href="#top" whiteSpace="nowrap" textStyle="bodyMedium" color="app.fg" _hover={{ textDecoration: "none" }}>
           Valentina Contreras
