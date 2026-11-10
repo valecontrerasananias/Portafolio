@@ -106,6 +106,37 @@ const meta = [
   { label: "Estado", value: ["Diseño aprobado", "En desarrollo"] },
 ];
 
+const overview = [
+  {
+    title: "Sobre IVR",
+    paragraphs: [
+      "El IVR es un sistema de atención telefónica automatizado que permite realizar consultas y gestiones sin hablar con un ejecutivo.",
+      "En la App Mi Movistar, una vez activados los permisos, esta funcionalidad intercepta las llamadas al 103 y muestra en pantalla alternativas de ayuda según el servicio del cliente (móvil, hogar o prepago), para que pueda resolver sus consultas sin necesidad de continuar la llamada.",
+    ],
+  },
+  {
+    title: "El desafío",
+    paragraphs: [
+      "Los stakeholders buscaban potenciar el uso del IVR para que más clientes pudieran resolver sus consultas a través de alternativas digitales, reduciendo la dependencia del call center.",
+      "De 35.000 intercepciones al mes, el 55% abandonaba sin interactuar con pantallas de IVR y alrededor del 30% continuaba hacia la llamada.",
+      "Esto motivó una revisión completa de la experiencia, desde la activación de permisos hasta las pantallas para clientes con servicio móvil, internet hogar y/o prepago que aparecen al marcar el 103, con el objetivo de identificar oportunidades para facilitar su uso.",
+    ],
+  },
+  {
+    title: "El resultado",
+    paragraphs: [
+      "Rediseñé la experiencia de IVR, simplificando la activación de permisos y reorganizando las alternativas de autogestión según las necesidades de cada servicio. La propuesta busca facilitar el acceso a alternativas de ayuda y reducir la dependencia de la atención telefónica.",
+      "El diseño fue aprobado por stakeholders y se encuentra en desarrollo para Android.",
+    ],
+  },
+  {
+    title: "Mi rol",
+    paragraphs: [
+      "Lideré el diseño UX/UI de la propuesta, desde el análisis de datos y la evaluación de los flujos existentes hasta la reorganización de accesos de las pantallas por segmento de IVR, la mejora de textos de los permisos y el diseño de nuevas pantallas.",
+    ],
+  },
+];
+
 const hypotheses = [
   {
     title: "Accesos mal priorizados",
@@ -184,25 +215,27 @@ export default function CaseStudy() {
               transformando llamadas en oportunidades de autogestión
             </Heading>
             <Text mt="6" textStyle="headline" color="app.muted">
-              Rediseñé la experiencia de autogestión del IVR para que los clientes resuelvan sus dudas sin llamar al call center.
+              Una experiencia más clara para encontrar alternativas de ayuda sin depender de la atención telefónica.
             </Text>
 
-            <Flex direction="column" gap="4" mt="8">
-              {[
-                ["El problema", "de 35.000 intercepciones al mes, el 55% abandonaba sin interactuar con pantallas de IVR."],
-                [
-                  "Lo que entregué",
-                  "accesos reorganizados por segmento, activación de permisos adaptada a cada dispositivo y una landing para quienes no habían activado la función.",
-                ],
-              ].map(([t, b]) => (
-                <Text key={t} textStyle="body" color="app.muted">
-                  <Text as="span" fontWeight="700" color="app.fg">
-                    {t}:
-                  </Text>{" "}
-                  {b}
-                </Text>
-              ))}
-            </Flex>
+            <Box mt="12" bg="app.card" rounded={{ base: "24px", md: "32px" }} p={{ base: 6, md: 12 }}>
+              <Grid templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} columnGap={{ md: 16 }} rowGap={{ base: 10, md: 12 }}>
+                {overview.map(({ title, paragraphs }) => (
+                  <Box key={title}>
+                    <Text textStyle="bodyLgMedium" fontWeight="700" color="app.fg">
+                      {title}
+                    </Text>
+                    <Flex direction="column" gap="4" mt="3">
+                      {paragraphs.map((t) => (
+                        <Text key={t} textStyle="body" color="app.muted">
+                          {t}
+                        </Text>
+                      ))}
+                    </Flex>
+                  </Box>
+                ))}
+              </Grid>
+            </Box>
 
             <Grid as="dl" mt="14" templateColumns={{ base: "repeat(2, minmax(0, 1fr))", md: "repeat(4, minmax(0, 1fr))" }} gap="8" borderTopWidth="1px" borderColor="app.border" pt="8">
               {meta.map((m) => (
