@@ -3,7 +3,7 @@ import { Box, Flex, Grid, GridItem, Heading, Link, List, Separator, Text } from 
 import { ArrowRight, Check, Home, Image as ImageIcon, LayoutGrid, LayoutTemplate, Megaphone, ShieldCheck, Minus, Smartphone, Wifi } from "lucide-react";
 import Nav from "../components/Nav";
 import Reveal from "../components/Reveal";
-import { AbandonMock, IvrScreen, PermissionsMock, PushLandingMock, SegmentsMock, TransversalMock } from "../components/mocks";
+import { AbandonMock, IvrScreen, PermissionsMock, PushLandingMock, TransversalMock } from "../components/mocks";
 
 /* ---------- primitivas de layout ---------- */
 
@@ -103,7 +103,7 @@ const meta = [
   { label: "Rol", value: ["UX/UI Designer"] },
   { label: "Equipo", value: ["Product Owner", "Stakeholders", "Desarrollo Android"] },
   { label: "Herramientas", value: ["Figma", "Looker Studio"] },
-  { label: "Estado", value: ["Diseño aprobado", "En desarrollo"] },
+  { label: "Período", value: ["Mayo 2026 - Diciembre 2026"] },
 ];
 
 const overview = [
@@ -218,6 +218,23 @@ export default function CaseStudy() {
               Una experiencia más clara para encontrar alternativas de ayuda sin depender de la atención telefónica.
             </Text>
 
+            {/* Imagen principal del caso (placeholder: reemplazar por la imagen final) */}
+            <Flex
+              mt="12"
+              w="full"
+              aspectRatio={{ base: "4 / 3", md: "16 / 8" }}
+              bg="app.card"
+              rounded={{ base: "24px", md: "32px" }}
+              direction="column"
+              align="center"
+              justify="center"
+              gap="3"
+              color="app.subtle"
+            >
+              <ImageIcon size={40} strokeWidth={1.5} aria-hidden />
+              <Text textStyle="footnote">Imagen principal del caso</Text>
+            </Flex>
+
             <Box mt="12" bg="app.card" rounded={{ base: "24px", md: "32px" }} p={{ base: 6, md: 12 }}>
               <Grid templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} columnGap={{ md: 16 }} rowGap={{ base: 10, md: 12 }}>
                 {overview.map(({ title, paragraphs }) => (
@@ -253,11 +270,6 @@ export default function CaseStudy() {
             </Grid>
           </Reveal>
 
-          <Reveal mt="16">
-            <Surface>
-              <SegmentsMock />
-            </Surface>
-          </Reveal>
         </Container>
 
         {/* Contexto */}
@@ -291,17 +303,17 @@ export default function CaseStudy() {
           </Box>
         </Section>
 
-        {/* Hipótesis */}
-        <Section label="Hipótesis">
-          <H2>Dos sospechas: lo que ofrecían las pantallas y los permisos previos</H2>
+        {/* Pistas */}
+        <Section label="Pistas">
+          <H2>Dos pistas: lo que ofrecían las pantallas y los permisos previos</H2>
           <Body mt="6">
-            Revisé todo el recorrido, desde la activación de permisos hasta las pantallas por segmento, y planteé dos hipótesis.
+            Revisé todo el recorrido, desde la activación de permisos hasta las pantallas por segmento, y planteé dos pistas.
           </Body>
           <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="6">
             {hypotheses.map((h, i) => (
               <Card key={h.title} delay={i * 150}>
                 <Text textStyle="footnoteMedium" color="app.subtle">
-                  Hipótesis {i + 1}
+                  Pista {i + 1}
                 </Text>
                 <H3 size="headlineMedium" mt="1">
                   {h.title}
