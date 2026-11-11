@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Box, Flex, Grid, GridItem, Heading, Link, List, Separator, Text } from "@chakra-ui/react";
-import { ArrowRight, Check, Home, Image as ImageIcon, LayoutGrid, LayoutTemplate, Megaphone, ShieldCheck, Minus, Smartphone, Wifi } from "lucide-react";
+import { ArrowRight, Check, Image as ImageIcon, LayoutGrid, LayoutTemplate, Megaphone, Minus, ShieldCheck } from "lucide-react";
 import Nav from "../components/Nav";
 import Reveal from "../components/Reveal";
 import { AbandonMock, IvrScreen, PermissionsMock, PushLandingMock, TransversalMock } from "../components/mocks";
@@ -54,17 +54,6 @@ const Body = ({ children, small, ...rest }: { children: ReactNode; small?: boole
   </Text>
 );
 
-const Stat = ({ value, children }: { value: string; children: ReactNode }) => (
-  <Flex align="baseline" gap="4">
-    <Text textStyle="h3" fontWeight="700" color="app.fg" flexShrink={0}>
-      {value}
-    </Text>
-    <Text maxW="sm" textStyle="footnote" color="app.muted">
-      {children}
-    </Text>
-  </Flex>
-);
-
 /* Dato destacado: tarjeta con borde continuo; la cifra y su frase en negrita negra (contraste), el resto en gris */
 const StatCard = ({ emoji, highlight, children, delay = 0 }: { emoji: string; highlight: string; children: ReactNode; delay?: number }) => (
   <Reveal h="full" delay={delay}>
@@ -101,7 +90,7 @@ const Surface = ({ children }: { children: ReactNode }) => (
 
 const meta = [
   { label: "Rol", value: ["UX/UI Designer"] },
-  { label: "Equipo", value: ["Product Owner", "Stakeholders", "Desarrollo Android"] },
+  { label: "Equipo", value: ["Product Owner", "Stakeholders"] },
   { label: "Herramientas", value: ["Figma", "Looker Studio"] },
   { label: "Período", value: ["Mayo 2026 - Diciembre 2026"] },
 ];
@@ -137,21 +126,15 @@ const overview = [
   },
 ];
 
-const hypotheses = [
+const insights = [
   {
-    title: "Accesos mal priorizados",
-    body: "Las pantallas reunían muchas opciones con el mismo peso, sin reflejar lo que cada cliente buscaba.",
+    title: "La activación necesitaba mayor claridad",
+    body: "Las instrucciones no siempre explicaban qué permisos debía habilitar el cliente y, según el dispositivo, el flujo podía finalizar sin confirmar su activación.",
   },
   {
-    title: "Activar el IVR era confuso",
-    body: "Las instrucciones no explicaban qué permisos habilitar y, según el dispositivo, el flujo terminaba sin confirmar la activación.",
+    title: "Los accesos de ayuda necesitaban una mejor jerarquía",
+    body: "El análisis de interacciones reveló diferencias en el uso de los accesos según el segmento, lo que permitió identificar cuáles priorizar, reorganizar o simplificar.",
   },
-];
-
-const segments = [
-  { icon: Home, title: "Hogar", lines: ["14,5% resolver fallas de internet", "7,3% revisar y cambiar plan"] },
-  { icon: Wifi, title: "Plan móvil", lines: ["6% revisar y pagar boleta", "5,5% mejorar la señal"] },
-  { icon: Smartphone, title: "Prepago", lines: ["41% consultar y recargar saldo", "14,8% comprar bolsas"] },
 ];
 
 const rules = [
@@ -218,6 +201,21 @@ export default function CaseStudy() {
               Una experiencia más clara para encontrar alternativas de ayuda sin depender de la atención telefónica.
             </Text>
 
+            <Grid as="dl" mt="10" templateColumns={{ base: "repeat(2, minmax(0, 1fr))", md: "repeat(4, minmax(0, 1fr))" }} gap="8" borderTopWidth="1px" borderColor="app.border" pt="8">
+              {meta.map((m) => (
+                <Box key={m.label}>
+                  <Text as="dt" textStyle="footnoteMedium" color="app.subtle">
+                    {m.label}
+                  </Text>
+                  {m.value.map((v) => (
+                    <Text as="dd" key={v} mt="1.5" textStyle="body">
+                      {v}
+                    </Text>
+                  ))}
+                </Box>
+              ))}
+            </Grid>
+
             {/* Imagen principal del caso (placeholder: reemplazar por la imagen final) */}
             <Flex
               mt="12"
@@ -253,21 +251,6 @@ export default function CaseStudy() {
                 ))}
               </Grid>
             </Box>
-
-            <Grid as="dl" mt="14" templateColumns={{ base: "repeat(2, minmax(0, 1fr))", md: "repeat(4, minmax(0, 1fr))" }} gap="8" borderTopWidth="1px" borderColor="app.border" pt="8">
-              {meta.map((m) => (
-                <Box key={m.label}>
-                  <Text as="dt" textStyle="footnoteMedium" color="app.subtle">
-                    {m.label}
-                  </Text>
-                  {m.value.map((v) => (
-                    <Text as="dd" key={v} mt="1.5" textStyle="body">
-                      {v}
-                    </Text>
-                  ))}
-                </Box>
-              ))}
-            </Grid>
           </Reveal>
 
         </Container>
@@ -303,77 +286,24 @@ export default function CaseStudy() {
           </Box>
         </Section>
 
-        {/* Pistas */}
-        <Section label="Pistas">
-          <H2>Dos pistas: lo que ofrecían las pantallas y los permisos previos</H2>
+        {/* Insights */}
+        <Section label="Insights">
+          <H2>Dos hallazgos que definieron el rediseño</H2>
           <Body mt="6">
-            Revisé todo el recorrido, desde la activación de permisos hasta las pantallas por segmento, y planteé dos pistas.
+            Tras analizar el recorrido completo del IVR, desde la activación de permisos hasta las opciones de ayuda, identifiqué dos
+            aspectos clave que orientaron las decisiones de diseño.
           </Body>
           <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="6">
-            {hypotheses.map((h, i) => (
+            {insights.map((h, i) => (
               <Card key={h.title} delay={i * 150}>
-                <Text textStyle="footnoteMedium" color="app.subtle">
-                  Pista {i + 1}
-                </Text>
-                <H3 size="headlineMedium" mt="1">
-                  {h.title}
+                <H3 size="headlineMedium">
+                  0{i + 1}. {h.title}
                 </H3>
                 <Body small mt="3">
                   {h.body}
                 </Body>
               </Card>
             ))}
-          </Grid>
-
-          <Box mt="20">
-            <H3>Pista 1: cada segmento buscaba algo distinto</H3>
-            <Body small mt="3">
-              Analicé los clics de abril a junio en Looker Studio y los convertí en porcentajes por segmento. Usé IA (ChatGPT) para
-              procesarlos más rápido, agrupar accesos similares y detectar opciones con poca interacción. El criterio para decidir fue
-              mío.
-            </Body>
-            <Grid mt="8" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(3, minmax(0, 1fr))" }} gap="6">
-              {segments.map((s, i) => {
-                const Icon = s.icon;
-                return (
-                  <Card key={s.title} delay={i * 150}>
-                    <Icon size={20} strokeWidth={1.5} aria-hidden />
-                    <H3 size="bodyLgMedium" mt="4">
-                      {s.title}
-                    </H3>
-                    <Flex direction="column" mt="2">
-                      {s.lines.map((l) => (
-                        <Text key={l} textStyle="body" color="app.muted">
-                          {l}
-                        </Text>
-                      ))}
-                    </Flex>
-                  </Card>
-                );
-              })}
-            </Grid>
-            <Text mt="8" textStyle="headlineMedium" color="app.fg">
-              <Text as="span" aria-hidden>
-                💡
-              </Text>{" "}
-              Cada segmento necesitaba su propia jerarquía.
-            </Text>
-          </Box>
-
-          <Grid mt="20" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap={{ base: 6, md: 12 }} borderTopWidth="1px" borderColor="app.border" pt="10" pb="2">
-            <Box>
-              <H3>Pista 2: lo que se pedía no coincidía con por qué llamaban</H3>
-              <Body small mt="3">
-                Un reporte de Atención Digital mostró cinco motivos como cobros no reconocidos, consultas de boleta y problemas técnicos.
-                Entre ellos había muchos reclamos por visitas técnicas incumplidas y fallas, y ninguna pantalla ofrecía un acceso para
-                ingresarlos. Ahí había un vacío que llenar.
-              </Body>
-            </Box>
-            <Box alignSelf="center">
-              <StatCard emoji="📊" highlight="40% de las llamadas">
-                se concentraba en cinco motivos.
-              </StatCard>
-            </Box>
           </Grid>
         </Section>
 
