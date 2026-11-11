@@ -48,7 +48,7 @@ const H3 = ({ children, size = "h5", ...rest }: { children: ReactNode; size?: st
   </Heading>
 );
 
-const Body = ({ children, small, ...rest }: { children: ReactNode; small?: boolean; mt?: string }) => (
+const Body = ({ children, small, ...rest }: { children: ReactNode; small?: boolean; mt?: string; maxW?: string }) => (
   <Text maxW="2xl" textStyle={small ? "body" : "bodyLg"} color="app.muted" {...rest}>
     {children}
   </Text>
@@ -175,8 +175,8 @@ const lessons = [
     body: "La pantalla transversal fue la mejor prueba: me dio una buena propuesta y la descarté con contexto que ella no tenía.",
   },
   {
-    title: "Hablar con desarrollo y con la PO cambia el diseño.",
-    body: "El dato de que el servicio ya era identificable cambió la decisión central.",
+    title: "La importancia de mantener una comunicación constante.",
+    body: "Trabajar en equipo fue clave para alinear las decisiones de diseño con los objetivos del negocio, resolver dudas y ajustar la propuesta durante el proceso.",
   },
 ];
 
@@ -296,8 +296,11 @@ export default function CaseStudy() {
           <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="6">
             {insights.map((h, i) => (
               <Card key={h.title} delay={i * 150}>
-                <H3 size="headlineMedium">
-                  0{i + 1}. {h.title}
+                <Text textStyle="footnoteMedium" color="app.subtle">
+                  0{i + 1}
+                </Text>
+                <H3 size="headlineMedium" mt="1">
+                  {h.title}
                 </H3>
                 <Body small mt="3">
                   {h.body}
@@ -338,14 +341,16 @@ export default function CaseStudy() {
             />
           </Grid>
 
-          <Box mt="14">
+          <Reveal mt="14">
+            <Box bg="app.card" rounded={{ base: "24px", md: "32px" }} p={{ base: 6, md: 10 }}>
+          <Box>
             <Flex align="center" gap="3">
               <Box color="app.fg" flexShrink={0}>
                 <Scale size={22} strokeWidth={1.5} aria-hidden />
               </Box>
               <H3 size="bodyLgMedium">El trade-off: simplicidad vs. relevancia</H3>
             </Flex>
-            <Body small mt="3">
+            <Body small mt="3" maxW="none">
               La propuesta permitía reducir las opciones visibles y priorizar los accesos con más interacciones. Sin embargo, gran parte
               de clientes podían encontrarse con accesos que no correspondían a su servicio contratado.
             </Body>
@@ -358,11 +363,13 @@ export default function CaseStudy() {
               </Box>
               <H3 size="bodyLgMedium">La decisión</H3>
             </Flex>
-            <Body small mt="3">
+            <Body small mt="3" maxW="none">
               Tras confirmar con desarrollo que era posible identificar el servicio de cada cliente, decidimos junto con la Product Owner
               descartar la pantalla transversal y mantener experiencias diferenciadas por segmento.
             </Body>
           </Box>
+            </Box>
+          </Reveal>
         </Section>
 
         {/* Pantallas por segmento */}
