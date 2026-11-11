@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Box, Flex, Grid, GridItem, Heading, Link, List, Separator, Text } from "@chakra-ui/react";
-import { ArrowRight, Check, Image as ImageIcon, LayoutGrid, LayoutTemplate, Megaphone, Minus, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, CircleCheckBig, Image as ImageIcon, LayoutGrid, LayoutTemplate, Megaphone, Minus, Scale, ShieldCheck } from "lucide-react";
 import Nav from "../components/Nav";
 import Reveal from "../components/Reveal";
 import { AbandonMock, IvrScreen, PermissionsMock, PushLandingMock, TransversalMock } from "../components/mocks";
@@ -311,8 +311,8 @@ export default function CaseStudy() {
         <Section label="Una exploración descartada">
           <H2>Una pantalla de atajos, y por qué la descarté</H2>
           <Body mt="6">
-            Con los datos de los tres segmentos usé IA para explorar una pantalla transversal: una sola vista con los accesos más usados
-            de móvil, prepago y hogar. Menos opciones, menos tiempo de decisión (ley de Hick). Visualmente era limpia y tenía lógica.
+            A partir de los datos de interacción, utilicé IA para explorar una pantalla transversal que reuniera los accesos más
+            utilizados de móvil, hogar y prepago.
           </Body>
 
           <Box mt="12">
@@ -339,16 +339,28 @@ export default function CaseStudy() {
           </Grid>
 
           <Box mt="14">
-            <Text textStyle="bodyLgMedium" fontWeight="700" color="app.fg">
-              ¿Por qué descarté esta alternativa?
-            </Text>
+            <Flex align="center" gap="3">
+              <Box color="app.fg" flexShrink={0}>
+                <Scale size={22} strokeWidth={1.5} aria-hidden />
+              </Box>
+              <H3 size="bodyLgMedium">El trade-off: simplicidad vs. relevancia</H3>
+            </Flex>
             <Body small mt="3">
-              Aunque reducía la cantidad de opciones visibles y posiblemente el tiempo de elección (ley de Hick), presentaba una
-              limitación importante: los clientes podían encontrarse con accesos que no correspondían a su servicio.
+              La propuesta permitía reducir las opciones visibles y priorizar los accesos con más interacciones. Sin embargo, gran parte
+              de clientes podían encontrarse con accesos que no correspondían a su servicio contratado.
             </Body>
-            <Body small mt="4">
-              Conversando con desarrollo, se nos dijo que se podía identificar el servicio asociado al cliente, y se decidió junto con la
-              PO mantener pantallas específicas para móvil, prepago y hogar, priorizando las opciones más relevantes para cada uno.
+          </Box>
+
+          <Box mt="10">
+            <Flex align="center" gap="3">
+              <Box color="app.fg" flexShrink={0}>
+                <CircleCheckBig size={22} strokeWidth={1.5} aria-hidden />
+              </Box>
+              <H3 size="bodyLgMedium">La decisión</H3>
+            </Flex>
+            <Body small mt="3">
+              Tras confirmar con desarrollo que era posible identificar el servicio de cada cliente, decidimos junto con la Product Owner
+              descartar la pantalla transversal y mantener experiencias diferenciadas por segmento.
             </Body>
           </Box>
         </Section>
