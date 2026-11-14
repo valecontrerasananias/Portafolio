@@ -106,22 +106,19 @@ const overview = [
   {
     title: "El desafío",
     paragraphs: [
-      "Los stakeholders buscaban potenciar el uso del IVR para que más clientes pudieran resolver sus consultas a través de alternativas digitales, reduciendo la dependencia del call center.",
-      "De 35.000 intercepciones al mes, el 55% abandonaba sin interactuar con pantallas de IVR y alrededor del 30% continuaba hacia la llamada.",
-      "Esto motivó una revisión completa de la experiencia, desde la activación de permisos hasta las pantallas para clientes con servicio móvil, internet hogar y/o prepago que aparecen al marcar el 103, con el objetivo de identificar oportunidades para facilitar su uso.",
-    ],
-  },
-  {
-    title: "El resultado",
-    paragraphs: [
-      "Rediseñé la experiencia de IVR, simplificando la activación de permisos y reorganizando las alternativas de autogestión según las necesidades de cada servicio. La propuesta busca facilitar el acceso a alternativas de ayuda y reducir la dependencia de la atención telefónica.",
-      "El diseño fue aprobado por stakeholders y se encuentra en desarrollo para Android.",
+      "Potenciar el uso del IVR para que más clientes pudieran resolver sus consultas a través de alternativas digitales, reduciendo la dependencia del call center.",
     ],
   },
   {
     title: "Mi rol",
     paragraphs: [
-      "Lideré el diseño UX/UI de la propuesta, desde el análisis de datos y la evaluación de los flujos existentes hasta la reorganización de accesos de las pantallas por segmento de IVR, la mejora de textos de los permisos y el diseño de nuevas pantallas.",
+      "Lideré el diseño UX/UI de la propuesta, desde el análisis de datos y la evaluación de los flujos existentes hasta la reorganización de accesos de las pantallas de IVR y la mejora de textos de los permisos.",
+    ],
+  },
+  {
+    title: "El resultado",
+    paragraphs: [
+      "Rediseñé la experiencia de IVR, simplificando la activación de permisos y reorganizando las alternativas de autogestión según las necesidades de cada servicio con la idea de facilitar el acceso a alternativas de ayuda y reducir la dependencia de la atención telefónica.",
     ],
   },
 ];
@@ -233,24 +230,22 @@ export default function CaseStudy() {
               <Text textStyle="footnote">Imagen principal del caso</Text>
             </Flex>
 
-            <Box mt="12" bg="app.card" rounded={{ base: "24px", md: "32px" }} p={{ base: 6, md: 12 }}>
-              <Grid templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} columnGap={{ md: 16 }} rowGap={{ base: 10, md: 12 }}>
-                {overview.map(({ title, paragraphs }) => (
-                  <Box key={title}>
-                    <Text textStyle="bodyLgMedium" fontWeight="700" color="app.fg">
-                      {title}
-                    </Text>
-                    <Flex direction="column" gap="4" mt="3">
-                      {paragraphs.map((t) => (
-                        <Text key={t} textStyle="body" color="app.muted">
-                          {t}
+            <Flex direction="column" gap="5" mt="12">
+              {overview.map(({ title, paragraphs }) => (
+                <Flex key={title} direction="column" gap="5">
+                  {paragraphs.map((t, i) => (
+                    <Text key={t} textStyle="body" color="app.muted">
+                      {i === 0 && (
+                        <Text as="span" fontWeight="700" color="app.fg">
+                          {title}:
                         </Text>
-                      ))}
-                    </Flex>
-                  </Box>
-                ))}
-              </Grid>
-            </Box>
+                      )}{" "}
+                      {t}
+                    </Text>
+                  ))}
+                </Flex>
+              ))}
+            </Flex>
           </Reveal>
 
         </Container>
@@ -258,16 +253,16 @@ export default function CaseStudy() {
         {/* Contexto */}
         <Section label="Contexto">
           <Heading as="h2" maxW="3xl" textStyle="h5" color="app.fg">
-            Cuando marcas el 103, la app puede ayudarte antes de que llames al call center.
+            Una experiencia de autogestión que necesitaba mejorar.
           </Heading>
           <Body mt="6">
-            El IVR es el sistema de atención telefónica automatizado de Movistar. En la app Mi Movistar, al marcar el 103 el cliente ve
-            en pantalla alternativas de ayuda para resolver su consulta sin esperar a un ejecutivo.
+            IVR es el sistema de atención telefónica automatizado de Movistar. En la App Mi Movistar, cuando un cliente marca el 103, la
+            llamada se intercepta y aparecen en pantalla alternativas de ayuda según su servicio (móvil, hogar o prepago), para que pueda
+            resolver su consulta sin esperar a un ejecutivo.
           </Body>
-          <Body mt="4">
-            Para el negocio, cada cliente que se autogestiona es una llamada menos al call center. Mi trabajo fue mejorar esa experiencia
-            en Android, junto con el Product Owner y el equipo de desarrollo.
-          </Body>
+          <Text mt="8" maxW="2xl" fontSize="24px" lineHeight="1.35" fontWeight="700" color="app.fg">
+            Para el negocio, cada cliente que se autogestiona es una llamada menos al call center.
+          </Text>
         </Section>
 
         {/* Problema */}
