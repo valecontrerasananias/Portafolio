@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Box, Flex, Grid, GridItem, Heading, Link, List, Separator, Text } from "@chakra-ui/react";
-import { ArrowRight, Check, CircleCheckBig, Image as ImageIcon, LayoutGrid, LayoutTemplate, Megaphone, Minus, Scale, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, CircleCheckBig, DoorOpen, Phone, type LucideIcon, Image as ImageIcon, LayoutGrid, LayoutTemplate, Megaphone, Minus, Scale, ShieldCheck } from "lucide-react";
 import Nav from "../components/Nav";
 import Reveal from "../components/Reveal";
 import { AbandonMock, IvrScreen, PermissionsMock, PushLandingMock, TransversalMock } from "../components/mocks";
@@ -54,21 +54,41 @@ const Body = ({ children, small, ...rest }: { children: ReactNode; small?: boole
   </Text>
 );
 
-/* Dato destacado: tarjeta con borde continuo; la cifra y su frase en negrita negra (contraste), el resto en gris */
-const StatCard = ({ emoji, highlight, children, delay = 0 }: { emoji: string; highlight: string; children: ReactNode; delay?: number }) => (
+/* Ícono dentro de un contenedor azul de la paleta (#17D5FF) */
+const IconBadge = ({ icon: Icon }: { icon: LucideIcon }) => (
+  <Flex boxSize="12" rounded="14px" bg="app.button" color="app.fg" align="center" justify="center" flexShrink={0}>
+    <Icon size={22} strokeWidth={1.75} aria-hidden />
+  </Flex>
+);
+
+/* Card con ícono: "white" (fondo blanco con sombra suave) o "gray" (fondo gris del sitio). Sin botones ni acciones. */
+const FeatureCard = ({ icon, tone = "white", delay = 0, children }: { icon: LucideIcon; tone?: "white" | "gray"; delay?: number; children: ReactNode }) => (
   <Reveal h="full" delay={delay}>
-  <Box rounded="container" borderWidth="1px" borderStyle="solid" borderColor="app.borderStrong" p={{ base: 6, md: 8 }} h="full">
-    <Text fontSize="28px" lineHeight="1" mb="4" aria-hidden>
-      {emoji}
-    </Text>
+    <Box
+      h="full"
+      p={{ base: 6, md: 8 }}
+      rounded="24px"
+      bg={tone === "white" ? "app.bg" : "app.card"}
+      borderWidth={tone === "white" ? "1px" : 0}
+      borderColor="app.border"
+      boxShadow={tone === "white" ? "0 8px 30px rgba(0, 0, 0, 0.06)" : "none"}
+    >
+      <IconBadge icon={icon} />
+      <Box mt="6">{children}</Box>
+    </Box>
+  </Reveal>
+);
+
+/* Dato destacado: la cifra y su frase en negrita negra, el resto en gris */
+const StatCard = ({ icon, highlight, children, delay = 0 }: { icon: LucideIcon; highlight: string; children: ReactNode; delay?: number }) => (
+  <FeatureCard icon={icon} delay={delay}>
     <Text textStyle="headline" color="app.muted">
       <Text as="span" fontWeight="700" color="app.fg">
         {highlight}
       </Text>{" "}
       {children}
     </Text>
-  </Box>
-  </Reveal>
+  </FeatureCard>
 );
 
 /* Card de contenido: fondo gris claro y esquinas amplias, sin bordes ni divisores */
@@ -125,10 +145,12 @@ const overview = [
 
 const insights = [
   {
+    icon: ShieldCheck,
     title: "La activación necesitaba mayor claridad",
     body: "Las instrucciones no siempre explicaban qué permisos debía habilitar el cliente y, según el dispositivo, el flujo podía finalizar sin confirmar su activación.",
   },
   {
+    icon: LayoutGrid,
     title: "Los accesos de ayuda necesitaban una mejor jerarquía",
     body: "El análisis de interacciones reveló diferencias en el uso de los accesos según el segmento, lo que permitió identificar cuáles priorizar, reorganizar o simplificar.",
   },
@@ -267,14 +289,14 @@ export default function CaseStudy() {
 
         {/* Problema */}
         <Section label="El problema">
-          <H2>¿Por qué 19.000 personas veían la pantalla y no hacían nada?</H2>
+          <H2>¿Por qué 19.000 personas veían la pantalla del IVR y no hacían nada?</H2>
           <Body mt="6">
-            En agosto hubo cerca de 35.000 intercepciones de IVR. La mayoría no usaba lo que se le ofrecía. Antes de rediseñar nada,
-            quería saber por qué.
+            En agosto hubo cerca de 35.000 intercepciones de IVR. La mayoría de clientes no usaba lo que se le ofrecía. Antes de
+            rediseñar nada, quería saber por qué.
           </Body>
           <Grid mt="10" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="6">
-            <StatCard emoji="🚪" highlight="55% de los clientes abandonaba el flujo">sin interactuar con ninguna pantalla del IVR.</StatCard>
-            <StatCard delay={150} emoji="📞" highlight="30% de los clientes seguía hacia la llamada">al call center.</StatCard>
+            <StatCard icon={DoorOpen} highlight="55% de los clientes abandonaba el flujo">sin interactuar con ninguna pantalla del IVR.</StatCard>
+            <StatCard delay={150} icon={Phone} highlight="30% de los clientes seguía hacia la llamada">al call center.</StatCard>
           </Grid>
           <Box mt="12" maxW="lg">
             <AbandonMock />
@@ -290,17 +312,17 @@ export default function CaseStudy() {
           </Body>
           <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="6">
             {insights.map((h, i) => (
-              <Card key={h.title} delay={i * 150}>
+              <FeatureCard key={h.title} icon={h.icon} tone="gray" delay={i * 150}>
                 <Text textStyle="footnoteMedium" color="app.subtle">
-                  0{i + 1}
+                  0{i + 1}.
                 </Text>
-                <H3 size="headlineMedium" mt="1">
+                <H3 size="headlineMedium" mt="3">
                   {h.title}
                 </H3>
                 <Body small mt="3">
                   {h.body}
                 </Body>
-              </Card>
+              </FeatureCard>
             ))}
           </Grid>
         </Section>
