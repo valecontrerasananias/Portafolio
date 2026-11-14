@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 import { Box, Flex, Grid, GridItem, Heading, Link, List, Separator, Text } from "@chakra-ui/react";
-import { ArrowRight, Check, CircleCheckBig, DoorOpen, Phone, type LucideIcon, Image as ImageIcon, LayoutGrid, LayoutTemplate, Megaphone, Minus, Scale, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, CircleCheckBig, DoorOpen, Phone, type LucideIcon, Image as ImageIcon, LayoutGrid, Megaphone, Minus, Scale, ShieldCheck } from "lucide-react";
 import Nav from "../components/Nav";
 import Reveal from "../components/Reveal";
-import { AbandonMock, IvrScreen, PermissionsMock, PushLandingMock, TransversalMock } from "../components/mocks";
+import { AbandonMock, PermissionsMock, TransversalMock } from "../components/mocks";
 
 /* ---------- primitivas de layout ---------- */
 
@@ -52,6 +52,25 @@ const Body = ({ children, small, ...rest }: { children: ReactNode; small?: boole
   <Text maxW="2xl" textStyle={small ? "body" : "bodyLg"} color="app.muted" {...rest}>
     {children}
   </Text>
+);
+
+/* Imagen placeholder: reemplazar por la imagen final */
+const PlaceholderImage = ({ label = "Imagen", ...rest }: { label?: string; mt?: string }) => (
+  <Flex
+    w="full"
+    aspectRatio={{ base: "4 / 3", md: "16 / 8" }}
+    bg="app.card"
+    rounded={{ base: "24px", md: "32px" }}
+    direction="column"
+    align="center"
+    justify="center"
+    gap="3"
+    color="app.subtle"
+    {...rest}
+  >
+    <ImageIcon size={40} strokeWidth={1.5} aria-hidden />
+    <Text textStyle="footnote">{label}</Text>
+  </Flex>
 );
 
 /* Ícono dentro de un contenedor azul de la paleta (#17D5FF) */
@@ -163,15 +182,6 @@ const rules = [
   ["Sumar solicitudes y reclamos", "Un acceso nuevo en los tres segmentos para el motivo de llamada sin respuesta."],
 ];
 
-const annotations = [
-  { n: 1, title: "Alternativas destacadas", body: "Las dos más relevantes del segmento, con mayor peso visual.", x: 6, y: 22 },
-  { n: 2, title: "Acceso unificado", body: "“Revisar” y “pagar boleta” en un solo acceso.", x: 94, y: 22 },
-  { n: 3, title: "Mejorar la señal", body: "Segundo acceso más usado del segmento.", x: 94, y: 34 },
-  { n: 4, title: "Solicitudes y reclamos", body: "Acceso nuevo para el motivo de llamada que no tenía respuesta.", x: 94, y: 49 },
-  { n: 5, title: "WhatsApp como acción principal", body: "Refuerza el canal digital.", x: 94, y: 85 },
-  { n: 6, title: "Continuar llamada", body: "Pasa a secundaria sin quitar la atención telefónica.", x: 94, y: 93 },
-];
-
 const decisions = [
   ["Plan móvil", "Unifiqué “revisar” y “pagar boleta” en un solo acceso, junto con mejorar la señal."],
   ["Hogar", "Protagonismo a fallas de internet y consulta de plan; agrupé boleta y sumé reclamos."],
@@ -190,12 +200,12 @@ const improvements = [
 
 const lessons = [
   {
-    title: "La IA acelera el análisis, pero no decide.",
-    body: "La pantalla transversal fue la mejor prueba: me dio una buena propuesta y la descarté con contexto que ella no tenía.",
+    title: "La IA como aliada en el análisis.",
+    body: "Incorporar herramientas de inteligencia artificial me permitió agilizar el procesamiento de datos, identificar oportunidades de mejora y explorar alternativas de diseño, manteniendo mi criterio para evaluar las propuestas y tomar decisiones.",
   },
   {
     title: "La importancia de mantener una comunicación constante.",
-    body: "Trabajar en equipo fue clave para alinear las decisiones de diseño con los objetivos del negocio, resolver dudas y ajustar la propuesta durante el proceso.",
+    body: "Trabajar de cerca con la Product Owner y desarrollo fue clave para alinear las decisiones de diseño con los objetivos del negocio, resolver dudas y ajustar la propuesta durante el proceso.",
   },
 ];
 
@@ -401,70 +411,10 @@ export default function CaseStudy() {
             <NumberedList items={decisions} />
           </Box>
 
-          <Box mt="16">
-            <Surface>
-              <Grid templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="10">
-                <IvrScreen segment="plan" variant="before" label="Antes · Plan móvil" />
-                <IvrScreen segment="plan" variant="after" label="Después · Plan móvil" />
-              </Grid>
-              <Grid mt="12" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))" }} gap="10">
-                <IvrScreen segment="hogar" variant="after" w={190} label="Hogar" />
-                <IvrScreen segment="prepago" variant="after" w={190} label="Prepago" />
-              </Grid>
-            </Surface>
-          </Box>
-        </Section>
-
-        {/* Diseño anotado */}
-        <Container>
-          <Reveal>
-            <Surface>
-              <Box position="relative" w="270px" maxW="100%" mx="auto">
-                <IvrScreen segment="plan" variant="after" w={270} />
-                {annotations.map((a) => (
-                  <Flex
-                    key={a.n}
-                    position="absolute"
-                    left={`${a.x}%`}
-                    top={`${a.y}%`}
-                    ml="-11px"
-                    mt="-11px"
-                    boxSize="22px"
-                    rounded="full"
-                    bg="app.fg"
-                    color="app.bg"
-                    align="center"
-                    justify="center"
-                    fontFamily="display"
-                    fontSize="10px"
-                    fontWeight="medium"
-                    boxShadow="0 0 0 4px var(--chakra-colors-app-surface)"
-                    aria-hidden
-                  >
-                    {a.n}
-                  </Flex>
-                ))}
-              </Box>
-            </Surface>
-            <List.Root as="ol" listStyle="none" m="0" mt="10" display="grid" gridTemplateColumns={{ base: "minmax(0, 1fr)", md: "repeat(2, minmax(0, 1fr))", lg: "repeat(3, minmax(0, 1fr))" }} columnGap="10" rowGap="6">
-              {annotations.map((a) => (
-                <List.Item key={a.n} display="flex" gap="3">
-                  <Flex boxSize="22px" flexShrink={0} rounded="full" borderWidth="1px" borderColor="app.borderStrong" align="center" justify="center" textStyle="smallMedium" fontSize="10px">
-                    {a.n}
-                  </Flex>
-                  <Box>
-                    <Text textStyle="footnoteMedium">
-                      {a.title}
-                    </Text>
-                    <Text mt="1" textStyle="footnote" color="app.muted">
-                      {a.body}
-                    </Text>
-                  </Box>
-                </List.Item>
-              ))}
-            </List.Root>
+          <Reveal mt="16">
+            <PlaceholderImage label="Imagen de las pantallas por segmento" />
           </Reveal>
-        </Container>
+        </Section>
 
         {/* Permisos */}
         <Section label="Solución">
@@ -500,31 +450,18 @@ export default function CaseStudy() {
               <PermissionsMock brand="huawei" />
             </Surface>
           </Iteration>
+        </Section>
 
-          <Iteration
-            tag="Segunda oportunidad"
-            title="Clientes que rechazaron los permisos"
-            intro="En la revisión con stakeholders surgió un caso nuevo: quienes rechazaron los permisos al entrar por primera vez. Diseñé una landing informativa, a la que se llega desde una notificación push, que muestra qué encontrarán y cómo activar los permisos."
-          >
-            <Surface>
-              <PushLandingMock />
-            </Surface>
-            <Flex mt="8" gap="4" align="flex-start">
-              <Box mt="1" flexShrink={0} color="app.fg">
-                <LayoutTemplate size={22} strokeWidth={1.5} aria-hidden />
-              </Box>
-              <Flex direction="column" gap="4">
-                <Body small>
-                  La pantalla presenta ejemplos de lo que puede encontrar y explica cómo activar los permisos para acceder a alternativas
-                  de ayuda en pantalla si deciden marcar el 103.
-                </Body>
-                <Body small>
-                  Esta solución amplió el alcance del proyecto, incorporando un nuevo punto de contacto para comunicar el valor de la
-                  funcionalidad.
-                </Body>
-              </Flex>
-            </Flex>
-          </Iteration>
+        {/* Segunda oportunidad */}
+        <Section label="Solución">
+          <H2>Una segunda oportunidad para activar el IVR</H2>
+          <Body mt="6">
+            En la revisión con stakeholders surgió un caso nuevo: quienes rechazaron los permisos al entrar por primera vez. Diseñé una
+            landing informativa, a la que se llega desde una notificación push, que muestra qué encontrarán y cómo activar los permisos.
+          </Body>
+          <Reveal mt="12">
+            <PlaceholderImage label="Imagen de la landing informativa" />
+          </Reveal>
         </Section>
 
         {/* Resultados */}
