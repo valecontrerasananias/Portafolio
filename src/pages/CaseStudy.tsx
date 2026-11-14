@@ -230,7 +230,7 @@ export default function CaseStudy() {
               Una experiencia más clara para encontrar alternativas de ayuda sin depender de la atención telefónica.
             </Text>
 
-            <Grid as="dl" mt="10" templateColumns={{ base: "repeat(2, minmax(0, 1fr))", md: "repeat(4, minmax(0, 1fr))" }} gap="8" borderTopWidth="1px" borderColor="app.border" pt="8">
+            <Grid as="dl" mt="10" templateColumns={{ base: "minmax(0, 1fr)", md: "repeat(4, minmax(0, 1fr))" }} gap="6" borderTopWidth="1px" borderColor="app.border" pt="8">
               {meta.map((m) => (
                 <Box key={m.label}>
                   <Text as="dt" textStyle="footnoteMedium" color="app.subtle">
