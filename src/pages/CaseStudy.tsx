@@ -155,7 +155,7 @@ const overview = [
     ],
   },
   {
-    title: "El resultado",
+    title: "La solución",
     paragraphs: [
       "Rediseñé la experiencia de IVR, simplificando la activación de permisos y reorganizando las alternativas de autogestión según las necesidades de cada servicio con la idea de facilitar el acceso a alternativas de ayuda y reducir la dependencia de la atención telefónica.",
     ],
