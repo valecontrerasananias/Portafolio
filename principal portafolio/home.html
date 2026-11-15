@@ -1,222 +1,367 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portafolio · Home</title>
+<title>Portfolio · Home</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:ital,wght@0,400;0,500;0,600;1,500;1,600&display=swap">
 <style>
-  /* Tokens tomados de index.css (@theme) */
+  /* Tokens from index.css (@theme) */
   :root {
-    --canvas: #ffffff;
-    --surface: #f5f3f8;
-    --line: #e7e3ec;
-    --ink: #1a1820;
-    --ink-soft: #2d2933;
-    --ink-line: #48434f;
-    --muted: #625d6b;
-    --muted-on-ink: #b9b4c2;
-    --lime: #e6ff5c;
-    --lime-strong: #d4f03a;
-    --lilac: #ece4ff;
-    --violet: #6b3cf0;
-    --peach: #ffe0d4;
-    --coral: #f2552c;
-    --error: #ff8a6b;
+    --canvas: #ffffff; --surface: #f5f3f8; --line: #e7e3ec;
+    --ink: #1a1820; --ink-soft: #2d2933; --ink-line: #48434f;
+    --muted: #625d6b; --muted-on-ink: #b9b4c2;
+    --lime: #e6ff5c; --lime-strong: #d4f03a; --lilac: #ece4ff;
+    --violet: #6b3cf0; --peach: #ffe0d4; --coral: #f2552c; --error: #ff8a6b;
     --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
     --font-body: "Open Sans", ui-sans-serif, system-ui, sans-serif;
     --text-hero: clamp(3.25rem, 9vw, 8.5rem);
     --text-section: clamp(2.25rem, 4.6vw, 4rem);
-    --radius-card: 28px;
-    --radius-media: 20px;
-    --radius-pill: 999px;
+    --radius-card: 28px; --radius-media: 20px; --radius-pill: 999px;
     --shadow-card: 0 1px 2px rgb(26 24 32 / .04), 0 8px 24px rgb(26 24 32 / .06);
   }
-  * { box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--canvas); color: var(--ink); font-family: var(--font-body); line-height: 1.6; }
-  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
-  @media (min-width: 768px) { .wrap { padding: 0 32px; } }
-
-  h1, h2 { font-family: var(--font-display); font-weight: 600; margin: 0; }
-  h1 { font-size: var(--text-hero); line-height: .98; letter-spacing: -.02em; }
-  h2 { font-size: var(--text-section); line-height: 1.05; letter-spacing: -.01em; }
-  p { margin: 0; }
-
-  header.nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
-  .brand { font-family: var(--font-display); font-weight: 600; color: var(--ink); text-decoration: none; }
-  .nav a.link { color: var(--ink); text-decoration: none; margin-left: 20px; font-weight: 500; }
-  .nav a.link:hover { text-decoration: underline; }
-
-  section { padding: 72px 0; }
-  .hero { padding: 56px 0 96px; }
-  .hero p.lead { margin-top: 28px; max-width: 36rem; color: var(--muted); font-size: 1.125rem; }
-  .pill { display: inline-block; background: var(--lime); color: var(--ink); border-radius: var(--radius-pill);
-          padding: 6px 14px; font-weight: 600; font-size: .875rem; margin-bottom: 24px; }
-
-  .btn { display: inline-flex; align-items: center; justify-content: center; border: 0; cursor: pointer;
-         background: var(--lime); color: var(--ink); font: 600 1rem var(--font-body);
-         padding: 14px 28px; border-radius: var(--radius-pill); text-decoration: none; }
-  .btn:hover { background: var(--lime-strong); }
-  .btn.dark { background: var(--ink); color: #fff; }
-  :focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; }
-
-  .grid { display: grid; gap: 20px; margin-top: 40px; }
-  @media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-  .card { background: var(--surface); border-radius: var(--radius-card); padding: 28px; box-shadow: var(--shadow-card); }
-  .card .media { aspect-ratio: 4/3; border-radius: var(--radius-media); background: var(--lilac); margin-bottom: 20px;
-                 display: grid; place-items: center; color: var(--violet); font-weight: 600; }
-  .card:nth-child(2) .media { background: var(--peach); color: var(--coral); }
-  .card:nth-child(3) .media { background: var(--lime); color: var(--ink); }
-  .card h3 { font-family: var(--font-display); margin: 0 0 6px; font-size: 1.25rem; }
-  .card p { color: var(--muted); }
-  .pending { font-style: italic; }
-
-  .about { background: var(--surface); }
-  .about p { margin-top: 20px; max-width: 40rem; color: var(--muted); }
-
-  .contact { background: var(--ink); color: #fff; border-radius: var(--radius-card); padding: 40px 24px; margin-bottom: 72px; }
-  @media (min-width: 768px) { .contact { padding: 64px; } }
-  .contact p.sub { color: var(--muted-on-ink); margin-top: 16px; max-width: 32rem; }
-  form { margin-top: 32px; max-width: 28rem; }
-  label { display: block; font-weight: 600; margin-bottom: 8px; }
-  input[type=email] { width: 100%; padding: 14px 18px; border-radius: var(--radius-pill); border: 2px solid var(--ink-line);
-                      background: var(--ink-soft); color: #fff; font: 1rem var(--font-body); }
-  input[aria-invalid=true] { border-color: var(--error); }
-  .err { color: var(--error); margin-top: 8px; font-weight: 600; min-height: 1.5em; }
-  .form-row { display: flex; flex-direction: column; gap: 16px; }
-  .sent { margin-top: 32px; background: var(--ink-soft); border-radius: var(--radius-media); padding: 24px; max-width: 28rem; }
-  .sent strong { color: var(--lime); font-family: var(--font-display); font-size: 1.25rem; }
+  body { margin: 0; background: var(--canvas); color: var(--ink); font-family: var(--font-body);
+         line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--lime); }
+  h1, h2, h3, p, ul { margin: 0; padding: 0; }
+  ul { list-style: none; }
+  a { color: inherit; }
   [hidden] { display: none !important; }
+  :focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+  .inner { max-width: 72rem; margin: 0 auto; }
+  .display { font-family: var(--font-display); font-weight: 600; letter-spacing: -.025em; }
 
-  footer { padding: 32px 0 48px; color: var(--muted); font-size: .875rem; border-top: 1px solid var(--line); }
-
-  .nf { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
-
-  @media (prefers-reduced-motion: no-preference) {
-    @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-    .rise { animation: rise 560ms cubic-bezier(.2,.7,.2,1) backwards; }
-    .rise.d2 { animation-delay: 120ms; } .rise.d3 { animation-delay: 240ms; }
+  /* Motion */
+  @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  .rise { animation: rise 560ms cubic-bezier(.2,.7,.2,1) backwards; }
+  .fade { animation: fade 400ms ease-out backwards; }
+  @media (prefers-reduced-motion: reduce) {
+    .rise { animation-name: fade; animation-duration: 400ms; }
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
   }
+
+  /* RollText (Jitter-style hover) */
+  .roll { position: relative; display: block; overflow: hidden; }
+  .roll > span { display: block; transition: transform 200ms ease-out; }
+  .roll > span + span { position: absolute; left: 0; right: 0; top: 100%; }
+  .group:hover .roll > span { transform: translateY(-100%); }
+
+  /* Navbar */
+  header.top { position: sticky; top: 0; z-index: 30; display: flex; justify-content: center; padding: 20px 16px 0; }
+  header.top nav { display: flex; align-items: center; gap: 4px; padding: 6px; border: 1px solid var(--line);
+                   border-radius: var(--radius-pill); background: rgb(255 255 255 / .9); box-shadow: var(--shadow-card);
+                   backdrop-filter: blur(8px); }
+  header.top a { display: flex; align-items: center; gap: 4px; padding: 8px 16px; border-radius: var(--radius-pill);
+                 font-size: .875rem; font-weight: 500; color: var(--muted); text-decoration: none; }
+  header.top a:hover { background: var(--surface); color: var(--ink); }
+  header.top a[aria-current] { background: var(--surface); color: var(--ink); font-weight: 600; }
+  section { scroll-margin-top: 6rem; }
+  svg { flex: none; }
+
+  /* Hero */
+  .hero { padding: 96px 24px 112px; }
+  @media (min-width: 768px) { .hero { padding-top: 128px; } }
+  .hero h1 { max-width: 72rem; margin: 0 auto; text-align: center; font-size: var(--text-hero); line-height: .98;
+             color: var(--ink); }
+  .hero h1 > span { display: block; }
+  .hero h1 > span:nth-child(2) { animation-delay: 90ms; }
+  .hero h1 > span:nth-child(3) { animation-delay: 180ms; }
+  .word { display: inline-block; white-space: nowrap; font-weight: inherit; }
+  .ch { display: inline-block; cursor: default; transition: color 200ms ease-out, transform 200ms ease-out; }
+  .ch:hover { transform: translateY(-.5rem); font-style: italic; }
+  .ch.v:hover { color: var(--violet); } .ch.c:hover { color: var(--coral); }
+  .tags { margin-top: 48px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; animation-delay: 300ms; }
+  .tags li { display: flex; align-items: center; gap: 8px; background: var(--lilac); border-radius: var(--radius-pill);
+             padding: 8px 16px; font-size: .875rem; font-weight: 600; }
+  @media (min-width: 768px) { .tags li { font-size: 1rem; } }
+  .tags i { width: 8px; height: 8px; border-radius: 50%; background: var(--violet); }
+
+  /* About */
+  .about { padding: 96px 24px; }
+  .about .inner { display: grid; gap: 48px; align-items: center; }
+  @media (min-width: 768px) { .about .inner { grid-template-columns: 1fr 1fr; gap: 64px; } }
+  .about h2 { font-size: 2.25rem; line-height: 1.25; }
+  @media (min-width: 768px) { .about h2 { font-size: 3rem; line-height: 1; } }
+  .about .hl { display: inline-block; background: var(--lime); border-radius: var(--radius-pill); padding: 0 .3em;
+               transition: transform 200ms ease-out; }
+  .about .hl:hover { transform: rotate(-3deg); }
+  .about p { margin-top: 24px; max-width: 32rem; font-size: 1.125rem; line-height: 1.625; color: var(--muted); }
+  strong { font-weight: 600; color: var(--ink); }
+  .placeholder { display: flex; align-items: center; justify-content: center; aspect-ratio: 4/3; width: 100%;
+                 border: 1px dashed var(--line); border-radius: var(--radius-card); background: var(--surface); color: var(--muted); }
+
+  /* Creative range */
+  .range { background: var(--surface); padding: 112px 24px; }
+  .range .head { max-width: 42rem; margin: 0 auto; text-align: center; }
+  .badge { display: inline-block; background: var(--canvas); color: var(--violet); border-radius: var(--radius-pill);
+           padding: 6px 16px; font-size: .875rem; font-weight: 600; }
+  .range h2 { margin-top: 24px; font-size: var(--text-section); line-height: 1.05; }
+  .range .head p { margin-top: 20px; font-size: 1.125rem; line-height: 1.625; color: var(--muted); }
+  .cards { margin-top: 64px; display: grid; gap: 24px; }
+  @media (min-width: 768px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .reveal { height: 100%; }
+  .card { display: flex; flex-direction: column; height: 100%; background: var(--canvas); border-radius: var(--radius-card); padding: 12px; }
+  .art { position: relative; display: flex; aspect-ratio: 4/3; overflow: hidden; border-radius: var(--radius-media); justify-content: center; }
+  .art.web { background: var(--lilac); align-items: center; }
+  .art.app { background: var(--lime); align-items: flex-end; }
+  .art.system { background: var(--peach); display: grid; grid-template-columns: repeat(3, 1fr); place-items: center; gap: 12px; padding: 32px; }
+  .win { width: 75%; background: var(--canvas); border-radius: 12px; padding: 12px; box-shadow: var(--shadow-card); }
+  .dots { display: flex; gap: 6px; margin-bottom: 12px; }
+  .dots i { width: 8px; height: 8px; border-radius: 50%; }
+  .bar { height: 8px; border-radius: 99px; background: var(--line); }
+  .win .t { height: 12px; width: 50%; background: var(--ink); margin-bottom: 8px; }
+  .win .s { width: 75%; margin-bottom: 16px; }
+  .blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .blocks i { height: 40px; border-radius: 8px; background: var(--surface); }
+  .blocks i:nth-child(2) { background: var(--lilac); }
+  .phone { height: 85%; width: 38%; border: 4px solid var(--ink); border-bottom: 0; border-radius: 22px 22px 0 0; background: var(--canvas); padding: 12px; }
+  .phone .notch { width: 32px; height: 6px; margin: 0 auto 12px; border-radius: 99px; background: var(--ink); }
+  .phone .img { height: 32px; border-radius: 8px; background: var(--peach); margin-bottom: 8px; }
+  .phone .bar { margin-bottom: 8px; width: 75%; } .phone .bar + .bar { width: 50%; margin-bottom: 16px; }
+  .phone .btn { height: 24px; border-radius: 99px; background: var(--ink); }
+  .art.system i { width: 48px; height: 48px; border-radius: 50%; }
+  .art.system i.sq { border-radius: 12px; }
+  .card .body { display: flex; flex: 1; flex-direction: column; padding: 24px 12px 12px; }
+  .card h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; letter-spacing: -.025em; }
+  .card p { margin-top: 8px; flex: 1; font-size: 1rem; line-height: 1.625; color: var(--muted); }
+  .cta { margin-top: 24px; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: var(--canvas);
+         border-radius: var(--radius-pill); padding: 12px 20px; font-size: .875rem; font-weight: 600; text-decoration: none;
+         transition: transform 150ms ease-out; }
+  .cta:hover { background: var(--lime); color: var(--ink); }
+  .cta:active { transform: scale(.96); background: var(--lime-strong); color: var(--ink); }
+  .cta:focus-visible { outline-offset: 2px; }
+
+  /* Contact */
+  .contact { padding: 96px 16px 24px; }
+  @media (min-width: 768px) { .contact { padding-left: 24px; padding-right: 24px; } }
+  .panel { max-width: 72rem; margin: 0 auto; border-radius: var(--radius-card); background: var(--ink); padding: 80px 24px; text-align: center; }
+  @media (min-width: 768px) { .panel { padding: 96px 64px; } }
+  .panel h2 { max-width: 48rem; margin: 0 auto; font-size: var(--text-section); line-height: 1.05; color: var(--canvas); }
+  .panel h2 em { display: inline-block; font-style: normal; color: var(--lime); transition: transform 200ms ease-out; }
+  .panel h2 em:hover { transform: rotate(2deg); font-style: italic; }
+  .panel .sub { max-width: 36rem; margin: 20px auto 0; font-size: 1.125rem; line-height: 1.625; color: var(--muted-on-ink); }
+  form { max-width: 32rem; margin: 40px auto 0; text-align: left; }
+  label { display: block; margin-bottom: 8px; padding: 0 20px; font-size: .875rem; font-weight: 600; color: var(--muted-on-ink); }
+  .field { display: flex; align-items: center; gap: 8px; border: 1px solid var(--ink-line); border-radius: var(--radius-pill);
+           background: var(--ink-soft); padding: 6px; }
+  .field:focus-within { border-color: var(--canvas); }
+  .field.err { border-color: var(--error); }
+  input { min-width: 0; flex: 1; background: transparent; border: 0; padding: 10px 16px; font: 1rem var(--font-body); color: var(--canvas); }
+  input::placeholder { color: rgb(185 180 194 / .6); }
+  input:focus { outline: none; }
+  .submit { flex: none; border: 0; cursor: pointer; background: var(--lime); color: var(--ink); border-radius: var(--radius-pill);
+            padding: 12px 24px; font: 600 .875rem var(--font-body); transition: transform 150ms ease-out; }
+  .submit:hover { background: var(--canvas); }
+  .submit:active { transform: scale(.96); background: var(--lime-strong); }
+  .submit:focus-visible { outline-color: var(--lime); outline-offset: 2px; }
+  .submit:disabled { cursor: wait; opacity: .7; }
+  .errmsg { margin-top: 8px; padding: 0 20px; font-size: .875rem; color: var(--error); }
+  .sent { max-width: 28rem; margin: 40px auto 0; display: flex; align-items: center; justify-content: center; gap: 12px;
+          background: var(--ink-soft); border-radius: var(--radius-pill); padding: 16px 24px; font-weight: 600; color: var(--canvas); }
+  .sent .tick { display: flex; width: 28px; height: 28px; align-items: center; justify-content: center; border-radius: 50%;
+                background: var(--lime); color: var(--ink); }
+
+  /* 404 */
+  .nf { display: flex; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+  .nf p { font-size: 1.125rem; font-weight: 500; }
 </style>
 </head>
 <body>
 
-<!-- Ruta "*" del routes.tsx -->
+<!-- Route "*" -->
 <div id="notfound" class="nf" hidden>
-  <p style="font-size:1.125rem;font-weight:500">Page not found</p>
+  <p>Page not found</p>
   <a href="#/" style="text-decoration:underline">Back to home</a>
 </div>
 
-<!-- Ruta "/" → Home -->
+<!-- Route "/" -> Home -->
 <div id="home">
-  <div class="wrap">
-    <header class="nav">
-      <a class="brand" href="#/">Tu nombre</a>
-      <nav aria-label="Principal">
-        <a class="link" href="#proyectos">Proyectos</a>
-        <a class="link" href="#sobre-mi">Sobre mí</a>
-        <a class="link" href="#contacto">Contacto</a>
-      </nav>
-    </header>
+  <header class="top">
+    <nav aria-label="Main">
+      <a class="group" href="#top" aria-current="page"><span class="roll"><span>Home</span><span aria-hidden="true">Home</span></span></a>
+      <a class="group" href="#projects"><span class="roll"><span>Projects</span><span aria-hidden="true">Projects</span></span></a>
+      <a class="group" href="https://www.linkedin.com/" target="_blank" rel="noreferrer"><span class="roll"><span>LinkedIn</span><span aria-hidden="true">LinkedIn</span></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"/></svg></a>
+      <a class="group" href="#about"><span class="roll"><span>About</span><span aria-hidden="true">About</span></span></a>
+    </nav>
+  </header>
 
-    <section class="hero">
-      <span class="pill rise">Pendiente: rol</span>
-      <h1 class="rise d2">Titular del portafolio</h1>
-      <p class="lead rise d3 pending">Pendiente: lo que debe decir tu portafolio en 10 segundos (se define en el Portfolio Brief).</p>
-      <p style="margin-top:32px"><a class="btn" href="#contacto">Hablemos</a></p>
+  <main>
+    <section id="top" class="hero">
+      <h1 class="display" aria-label="I design simple &amp; joyful products">
+        <span class="rise" aria-hidden="true"><b class="word" data-w="I" data-s="0"></b> <b class="word" data-w="design" data-s="1"></b></span>
+        <span class="rise" aria-hidden="true"><b class="word" data-w="simple" data-s="7"></b> <b class="word" data-w="&amp;" data-s="13"></b> <b class="word" data-w="joyful" data-s="14"></b></span>
+        <span class="rise" aria-hidden="true"><b class="word" data-w="products" data-s="20"></b></span>
+      </h1>
+      <ul class="tags rise">
+        <li><i></i>Semi senior UX/UI designer</li>
+        <li><i></i>4 years of experience</li>
+        <li><i></i>Web and App experience</li>
+      </ul>
     </section>
-  </div>
 
-  <section id="proyectos">
-    <div class="wrap">
-      <h2>Proyectos</h2>
-      <div class="grid">
-        <article class="card"><div class="media" aria-hidden="true">Imagen</div><h3>Proyecto 1</h3><p class="pending">Pendiente: título con el resultado como titular.</p></article>
-        <article class="card"><div class="media" aria-hidden="true">Imagen</div><h3>Proyecto 2</h3><p class="pending">Pendiente.</p></article>
-        <article class="card"><div class="media" aria-hidden="true">Imagen</div><h3>Proyecto 3</h3><p class="pending">Pendiente.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section id="sobre-mi" class="about">
-    <div class="wrap">
-      <h2>Sobre mí</h2>
-      <p class="pending">Pendiente: biografía con hechos reales, a partir del CV o LinkedIn.</p>
-    </div>
-  </section>
-
-  <section id="contacto">
-    <div class="wrap">
-      <div class="contact">
-        <h2>Contacto</h2>
-        <p class="sub">Déjame tu correo y te escribo.</p>
-
-        <form id="contact-form" novalidate>
-          <div class="form-row">
-            <div>
-              <label for="email">Correo electrónico</label>
-              <input id="email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com"
-                     aria-describedby="email-error">
-              <p id="email-error" class="err" role="alert"></p>
-            </div>
-            <div><button class="btn" type="submit">Enviar</button></div>
+    <section id="about" class="about">
+      <div class="inner">
+        <div class="reveal">
+          <h2 class="display">I turn messy problems into interfaces <span class="hl">people</span> get right away</h2>
+          <p><strong>From research to high-fidelity prototypes,</strong> I design web and mobile products that are easy to understand and fun to use. I work closely with developers so what ships matches what was designed.</p>
+        </div>
+        <div class="reveal" data-delay="120">
+          <div class="placeholder" role="img" aria-label="Image placeholder">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>
           </div>
-        </form>
-
-        <div id="sent" class="sent" role="status" hidden>
-          <strong>¡Mensaje enviado!</strong>
-          <p style="margin-top:8px;color:var(--muted-on-ink)">Gracias, te respondo pronto.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="wrap"><footer>© Tu nombre</footer></div>
+    <section id="projects" class="range">
+      <div class="inner">
+        <div class="head reveal">
+          <span class="badge">Creative range</span>
+          <h2 class="display">One designer, every screen size</h2>
+          <p><strong>I move between web, mobile and systems work</strong> without losing the details that make a product feel cared for.</p>
+        </div>
+
+        <div class="cards">
+          <div class="reveal" data-delay="0">
+            <article class="card">
+              <div class="art web" aria-hidden="true">
+                <div class="win">
+                  <div class="dots"><i style="background:var(--coral)"></i><i style="background:var(--lime-strong)"></i><i style="background:var(--violet)"></i></div>
+                  <div class="bar t"></div><div class="bar s"></div>
+                  <div class="blocks"><i></i><i></i><i></i></div>
+                </div>
+              </div>
+              <div class="body">
+                <h3>Web platforms</h3>
+                <p>Dashboards, marketing sites and SaaS tools with clear navigation and calm, readable layouts.</p>
+                <a class="cta group" href="#projects"><span class="roll"><span>See web projects</span><span aria-hidden="true">See web projects</span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"/></svg></a>
+              </div>
+            </article>
+          </div>
+          <div class="reveal" data-delay="100">
+            <article class="card">
+              <div class="art app" aria-hidden="true">
+                <div class="phone"><div class="notch"></div><div class="img"></div><div class="bar"></div><div class="bar"></div><div class="btn"></div></div>
+              </div>
+              <div class="body">
+                <h3>Mobile apps</h3>
+                <p>iOS and Android flows designed thumb-first, from onboarding to the screens people use every day.</p>
+                <a class="cta group" href="#projects"><span class="roll"><span>See app projects</span><span aria-hidden="true">See app projects</span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"/></svg></a>
+              </div>
+            </article>
+          </div>
+          <div class="reveal" data-delay="200">
+            <article class="card">
+              <div class="art system" aria-hidden="true">
+                <i style="background:var(--violet)"></i><i class="sq" style="background:var(--ink)"></i><i style="background:var(--coral)"></i>
+                <i class="sq" style="background:var(--canvas)"></i><i style="background:var(--lime)"></i><i class="sq" style="background:var(--lilac)"></i>
+              </div>
+              <div class="body">
+                <h3>Design systems</h3>
+                <p>Reusable components, tokens and documentation that keep teams fast and products consistent.</p>
+                <a class="cta group" href="#projects"><span class="roll"><span>See design systems</span><span aria-hidden="true">See design systems</span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7"/></svg></a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="reveal">
+        <div class="panel">
+          <h2 class="display">Have a product that needs a <em>friendly</em> face?</h2>
+          <p class="sub">Leave your email and I'll get back to you to talk about your project.</p>
+
+          <div id="sent" class="sent fade" role="status" hidden>
+            <span class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Email received. I'll be in touch soon.
+          </div>
+
+          <form id="form" novalidate>
+            <label for="contact-email">Email</label>
+            <div class="field" id="field">
+              <input id="contact-email" type="email" autocomplete="email" placeholder="name@company.com">
+              <button id="submit" class="submit group" type="submit"><span class="roll"><span>Get in touch</span><span aria-hidden="true">Get in touch</span></span></button>
+            </div>
+            <p id="contact-email-error" class="errmsg" hidden>Enter an email like name@company.com</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
 </div>
 
 <script>
-  /* Estados de screens.figr.json:
-     scr_home                → /
-     scr_home_contact_error  → /?state=error  (email "maria@", contactStatus "error")
-     scr_home_contact_sent   → /?state=sent   (contactStatus "sent")           */
-  const form = document.getElementById('contact-form');
-  const email = document.getElementById('email');
-  const errEl = document.getElementById('email-error');
-  const sentEl = document.getElementById('sent');
+  /* Hero: each letter turns italic and takes an accent on hover (PlayWord) */
+  document.querySelectorAll('.word').forEach(w => {
+    const start = +w.dataset.s;
+    [...w.dataset.w].forEach((ch, i) => {
+      const s = document.createElement('span');
+      s.className = 'ch ' + ((start + i) % 2 === 0 ? 'v' : 'c');
+      s.textContent = ch;
+      w.appendChild(s);
+    });
+  });
 
-  function setStatus(status) {
-    const isErr = status === 'error', isSent = status === 'sent';
-    form.hidden = isSent;
-    sentEl.hidden = !isSent;
-    email.setAttribute('aria-invalid', String(isErr));
-    errEl.textContent = isErr ? 'Escribe un correo válido, por ejemplo nombre@dominio.com.' : '';
+  /* Reveal: fade in once it scrolls into view (content visible by default) */
+  document.querySelectorAll('.reveal').forEach(el => {
+    if (el.getBoundingClientRect().top < innerHeight) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      el.style.animationDelay = (el.dataset.delay || 0) + 'ms';
+      el.classList.add('rise');
+      el.addEventListener('animationend', () => el.classList.remove('rise'), { once: true });
+      io.disconnect();
+    });
+    io.observe(el);
+  });
+
+  /* Contact form. States: idle | error | sending | sent
+     screens.figr.json: ?state=error (email "maria@") and ?state=sent */
+  const form = document.getElementById('form'), input = document.getElementById('contact-email'),
+        field = document.getElementById('field'), errmsg = document.getElementById('contact-email-error'),
+        sent = document.getElementById('sent'), btn = document.getElementById('submit');
+
+  function setStatus(s) {
+    form.hidden = s === 'sent';
+    sent.hidden = s !== 'sent';
+    field.classList.toggle('err', s === 'error');
+    errmsg.hidden = s !== 'error';
+    input.setAttribute('aria-invalid', String(s === 'error'));
+    if (s === 'error') input.setAttribute('aria-describedby', 'contact-email-error');
+    else input.removeAttribute('aria-describedby');
+    btn.disabled = s === 'sending';
+    btn.innerHTML = s === 'sending' ? 'Sending…'
+      : '<span class="roll"><span>Get in touch</span><span aria-hidden="true">Get in touch</span></span>';
   }
-
   form.addEventListener('submit', e => {
     e.preventDefault();
-    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
-    setStatus(ok ? 'sent' : 'error');
-    if (!ok) email.focus();
+    if (!/^\S+@\S+\.\S+$/.test(input.value.trim())) { setStatus('error'); return; }
+    setStatus('sending');
+    setTimeout(() => setStatus('sent'), 900);
   });
-  email.addEventListener('input', () => { if (email.getAttribute('aria-invalid') === 'true') setStatus('idle'); });
+  input.addEventListener('input', () => { if (field.classList.contains('err')) setStatus('idle'); });
 
-  /* Router mínimo: "/" → Home, cualquier otra ruta → Page not found */
+  const q = new URLSearchParams(location.search).get('state');
+  if (q === 'error') { input.value = 'maria@'; setStatus('error'); }
+  else if (q === 'sent') setStatus('sent');
+  else setStatus('idle');
+
+  /* Router: "/" -> Home, any other path -> Page not found */
   function route() {
-    const path = location.hash.replace(/^#/, '');
-    const isHome = path === '' || path === '/' || /^[a-z-]+$/.test(path);
+    const h = location.hash.replace(/^#/, '');
+    const isHome = h === '' || h === '/' || /^[a-z-]+$/.test(h);
     document.getElementById('home').hidden = !isHome;
     document.getElementById('notfound').hidden = isHome;
   }
-  window.addEventListener('hashchange', route);
-  route();
-
-  const state = new URLSearchParams(location.search).get('state');
-  if (state === 'error') { email.value = 'maria@'; setStatus('error'); }
-  else if (state === 'sent') setStatus('sent');
-  else setStatus('idle');
+  addEventListener('hashchange', route); route();
 </script>
 </body>
 </html>
